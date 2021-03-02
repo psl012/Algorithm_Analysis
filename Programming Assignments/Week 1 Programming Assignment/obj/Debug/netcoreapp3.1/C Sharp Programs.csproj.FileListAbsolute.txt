@@ -1,0 +1,26 @@
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\bin\Debug\netcoreapp3.1\C Sharp Programs.exe
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\bin\Debug\netcoreapp3.1\C Sharp Programs.deps.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\bin\Debug\netcoreapp3.1\C Sharp Programs.runtimeconfig.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\bin\Debug\netcoreapp3.1\C Sharp Programs.runtimeconfig.dev.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\bin\Debug\netcoreapp3.1\C Sharp Programs.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\bin\Debug\netcoreapp3.1\C Sharp Programs.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.csprojAssemblyReference.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.AssemblyInfoInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.AssemblyInfo.cs
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.csproj.CoreCompileInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\C Sharp Programs\obj\Debug\netcoreapp3.1\C Sharp Programs.genruntimeconfig.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\bin\Debug\netcoreapp3.1\C Sharp Programs.exe
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\bin\Debug\netcoreapp3.1\C Sharp Programs.deps.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\bin\Debug\netcoreapp3.1\C Sharp Programs.runtimeconfig.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\bin\Debug\netcoreapp3.1\C Sharp Programs.runtimeconfig.dev.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\bin\Debug\netcoreapp3.1\C Sharp Programs.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\bin\Debug\netcoreapp3.1\C Sharp Programs.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.csprojAssemblyReference.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.AssemblyInfoInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.AssemblyInfo.cs
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.csproj.CoreCompileInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Prograamming Assignments\Week 1 Programming Assignment\obj\Debug\netcoreapp3.1\C Sharp Programs.genruntimeconfig.cache
