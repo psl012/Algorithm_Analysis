@@ -9,13 +9,18 @@ namespace Week_5_Programming_Assignment
     {
         static void Main(string[] args)
         {
+            SCC _scc = new SCC();
+
             TestCase testCase = new TestCase();
-            testCase.TestCase1(); Console.WriteLine();
-            testCase.TestCase2(); Console.WriteLine();
-            testCase.TestCase3(); Console.WriteLine();
-            testCase.TestCase4(); Console.WriteLine();
-            testCase.TestCase5();
-           // testCase.TestCase3Reverse();
+         //   testCase.TestCase1(); Console.WriteLine();
+           // testCase.TestCase2(); Console.WriteLine();
+           // testCase.TestCase3(); Console.WriteLine();
+           //   testCase.TestCase4(); Console.WriteLine();
+          //  testCase.TestCase5();
+        //    testCase.TestCase6();
+                testCase.MiniTestCase(); 
+         //   testCase.RealTest();
+            
             Console.ReadKey();
         }
 
@@ -30,7 +35,8 @@ namespace Week_5_Programming_Assignment
         {
             Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Mini Test Case.txt");
 
-            _scc.Kosaraju(graph);
+         //   _scc.Kosaraju(graph);
+            _scc.TopoSort(graph);
             graph.DisplayGraphTable();            
         }
 
@@ -38,37 +44,59 @@ namespace Week_5_Programming_Assignment
         {
             Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Test Case 1.txt");
 
-            _scc.Kosaraju(graph);
-        //    graph.DisplayGraphTable();
+         //   _scc.Kosaraju(graph);
+           // _scc.IterativeDFS(graph, graph.Value()[2]._origin);
+            _scc.TopoSort(graph);
+            graph.DisplayGraphTable();
         }
 
         public void TestCase2()
         {
             Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Test Case 2.txt");
-            _scc.Kosaraju(graph);
-        //    graph.DisplayGraphTable();
+          //  _scc.TopoSort(graph);
+          //  _scc.Kosaraju(graph);
+            graph.DisplayGraphTable();
         }
 
         public void TestCase3()
         {
             Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Test Case 3.txt");
-
-            _scc.Kosaraju(graph);
-         //   graph.DisplayGraphTable();    
+          //  _scc.Kosaraju(graph);
+            _scc.TopoSort(graph);
+            graph.DisplayGraphTable();    
         }
 
         public void TestCase4()
         {
             Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Test Case 4.txt");
-
-            _scc.Kosaraju(graph);           
+            _scc.Kosaraju(graph);
+            //_scc.TopoSort(graph);     
+            graph.DisplayGraphTable();      
         }
 
         public void TestCase5()
         {
             Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Test Case 5.txt");
+            _scc.Kosaraju(graph);
+            //_scc.TopoSort(graph);     
+            graph.DisplayGraphTable();           
+        }
 
-            _scc.Kosaraju(graph);                 
+        public void TestCase6()
+        {
+            Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Test Case 6.txt");
+           // _scc.TopoSort(graph);
+            _scc.Kosaraju(graph);   
+         //   graph.DisplayGraphTable();              
+        }
+
+        public void RealTest()
+        {
+            Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 5 Programming Assignment\Week 5 Database.txt");
+            _scc.TopoSort(graph);
+           // _scc.Kosaraju(graph);   
+          //    _scc.IterativeDFS(graph, graph.Value()[2]._origin);        
+         //   graph.DisplayGraphTable();
         }
 
         public void TestCase3Reverse()
@@ -93,6 +121,8 @@ namespace Week_5_Programming_Assignment
       
         List<int> _sccCountList = new List<int>();
    
+        Hashtable checker = new Hashtable();
+
         public void Kosaraju(Graph graph)
         {
             int numScc;
@@ -119,7 +149,7 @@ namespace Week_5_Programming_Assignment
                 {
                     numScc += 1;
                     _sccCounter = 0;
-                    RecursionDFS(graph, graph.Value()[_arrangedKeys[i]]._origin, false ,numScc);
+                   // RecursionDFS(graph, graph.Value()[_arrangedKeys[i]]._origin, false ,numScc);
                     _sccCountList.Add(_sccCounter);
                 }
             }
@@ -152,11 +182,13 @@ namespace Week_5_Programming_Assignment
                 listOfVertex.Add(pt._origin);
             }
             _curLabel = listOfVertex.Count;
+            // _curLabel = 0;
             foreach(Vertex v in listOfVertex)
             {
                 if(!v._isExplored) 
                 {
-                    RecursionDFS(graph, v, true, -1);
+                   // RecursionDFS(graph, v, true, -1);
+                   IterativeDFS(graph, v, true, -1);
                 }
             }   
         }
@@ -174,10 +206,13 @@ namespace Week_5_Programming_Assignment
             RecursionDFS(graph, _tailList[idx]);   
         }
 
+        public void IterativeDFS(Graph graph, Vertex s, bool isTopoSort = false, int numScc = -1)
+        {
+            Stack<Path> _stack = new Stack<Path>();
+        }
+
         void RecursionDFS(Graph graph, Vertex s, bool isTopoSort = false, int numScc = -1)
         {
-            _limitCounter -= 1;
-      
             if(_limitCounter > 0)
             {
                 Vertex origin = GetOriginVertex(graph, s);
@@ -326,8 +361,9 @@ namespace Week_5_Programming_Assignment
     {
         public int? _value;
         public int? _topoRank;
-        public int? _sccGroup;
+        public int? _sccGroup = -1;
         public bool _isExplored;
+        public bool _isStacked = false;
 
         public Vertex(int? point, int topoRank)
         {
@@ -382,5 +418,5 @@ namespace Week_5_Programming_Assignment
 
 
     }
-
+// stack overflow problem
 }
