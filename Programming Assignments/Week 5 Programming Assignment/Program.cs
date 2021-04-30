@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace Week_5_Programming_Assignment
 {
@@ -10,6 +11,8 @@ namespace Week_5_Programming_Assignment
         static void Main(string[] args)
         {
             SCC _scc = new SCC();
+            // Go back to this assignment in the future
+//            public Thread (System.Threading.ParameterizedThreadStart start, int maxStackSize);
 
             TestCase testCase = new TestCase();
             testCase.TestCase1(); Console.WriteLine();
@@ -17,8 +20,8 @@ namespace Week_5_Programming_Assignment
             testCase.TestCase3(); Console.WriteLine();
             testCase.TestCase4(); Console.WriteLine();
             testCase.TestCase5(); Console.WriteLine();
-        //    testCase.TestCase6();
-               // testCase.MiniTestCase(); 
+         //   testCase.TestCase6();
+          //   testCase.MiniTestCase(); 
          //   testCase.RealTest();
             
             Console.ReadKey();
