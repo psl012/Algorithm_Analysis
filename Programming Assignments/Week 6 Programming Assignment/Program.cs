@@ -10,7 +10,7 @@ namespace Week_6_Programming_Assignment
         {
             Console.WriteLine("Hello World!");
             Dijkstra dijkstra = new Dijkstra();
-            Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 6 Programming Assignment\Test Case.txt");
+            Graph graph = new Graph(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 6 Programming Assignment\Week 6 Data Partial.txt");
             dijkstra.Apply(graph, graph._vertices[1]);
             dijkstra.PrintAnswer();
             Console.ReadKey();
@@ -33,7 +33,7 @@ namespace Week_6_Programming_Assignment
             while(isCrossed)
             {
                 Edge shortestPath = null;
-                int tempDijkstraLength = 10000;
+                int tempDijkstraLength = 1000000;
                 isCrossed = false;
                 foreach(KeyValuePair<string, Edge> entry in graph._edges)
                 {
@@ -99,6 +99,18 @@ namespace Week_6_Programming_Assignment
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
+            Console.WriteLine("The final Answer is:");
+            Console.WriteLine(_graph._vertices[7]._number + " " + _graph._vertices[7]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[37]._number + " " + _graph._vertices[37]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[59]._number + " " + _graph._vertices[59]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[82]._number + " " + _graph._vertices[82]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[99]._number + " " + _graph._vertices[99]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[115]._number + " " + _graph._vertices[115]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[133]._number + " " + _graph._vertices[133]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[165]._number + " " + _graph._vertices[165]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[188]._number + " " + _graph._vertices[188]._dijkstraLength);
+            Console.WriteLine(_graph._vertices[197]._number + " " + _graph._vertices[197]._dijkstraLength);
         }
 
     }
@@ -128,14 +140,16 @@ namespace Week_6_Programming_Assignment
                 for(int i=1; i < entry.Length; i++)
                 {
                     string[] vertexElements = entry[i].Split(",");
-                    
-                    Vertex headVertex = new Vertex(Convert.ToInt32(vertexElements[0]));
-                    int edgeLength = Convert.ToInt32(vertexElements[1]);
-                    if(!_vertices.ContainsKey(headVertex._number))  
-                    {
-                        _vertices.Add(headVertex._number, headVertex);
+                    if(!string.IsNullOrEmpty(vertexElements[0]))
+                    {  
+                        Vertex headVertex = new Vertex(Convert.ToInt32(vertexElements[0]));
+                        int edgeLength = Convert.ToInt32(vertexElements[1]);
+                        if(!_vertices.ContainsKey(headVertex._number))  
+                        {
+                            _vertices.Add(headVertex._number, headVertex);
+                        }
+                        edgeNumbers.Add((tailVertexNumber, headVertex._number, edgeLength));   
                     }
-                    edgeNumbers.Add((tailVertexNumber, headVertex._number, edgeLength));   
                 }
             }
 
@@ -147,8 +161,17 @@ namespace Week_6_Programming_Assignment
 
                 Edge edge = new Edge(tail, head, edgeLength);
                 
-                string key = tail._number.ToString() + head._number.ToString();
-                _edges.Add(key, edge);
+                string key = tail._number.ToString() + "T" + head._number.ToString() + "H";
+                
+                if(!_edges.ContainsKey(key))
+                {
+                    _edges.Add(key, edge);
+                }
+                else
+                {
+                    Console.WriteLine(key + "why did this repeat");
+                }
+
             }
         }
     }
@@ -156,7 +179,7 @@ namespace Week_6_Programming_Assignment
     class Vertex
     {
         public int? _number;
-        public int _dijkstraLength = 10000;
+        public int _dijkstraLength = 1000000;
         public Vertex _link = null;
         
         public Vertex(int? number)

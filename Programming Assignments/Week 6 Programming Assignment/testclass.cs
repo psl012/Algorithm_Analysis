@@ -60,11 +60,11 @@ public class testclass
         (int?, int?, int) edge_3_4 = (3,4,3);
         
         // Act
-        Edge g_edge_1_2 = graph._edges["12"];
-        Edge g_edge_1_3 = graph._edges["13"];
-        Edge g_edge_2_3 = graph._edges["23"];
-        Edge g_edge_2_4 = graph._edges["24"];
-        Edge g_edge_3_4 = graph._edges["34"];
+        Edge g_edge_1_2 = graph._edges["1T2H"];
+        Edge g_edge_1_3 = graph._edges["1T3H"];
+        Edge g_edge_2_3 = graph._edges["2T3H"];
+        Edge g_edge_2_4 = graph._edges["2T4H"];
+        Edge g_edge_3_4 = graph._edges["3T4H"];
         
         // Assert
         TestEdgeValues(edge_1_2, g_edge_1_2);
@@ -83,10 +83,10 @@ public class testclass
 
         // Act
         // Manipulating from the tail
-        graph._edges["12"]._tail._dijkstraLength = newdijkstraLength;
+        graph._edges["1T2H"]._tail._dijkstraLength = newdijkstraLength;
     
         // Manipulating from the head
-        graph._edges["12"]._head._dijkstraLength = newdijkstraLength2;
+        graph._edges["1T2H"]._head._dijkstraLength = newdijkstraLength2;
 
         // Assert
         // Manipulating from tail
@@ -97,7 +97,7 @@ public class testclass
 
         // Check if a manipulation from head will change the tail perspective...
         // the head of one edge is equal to the tail of another
-        Assert.Equal(newdijkstraLength2, graph._edges["23"]._tail._dijkstraLength);
+        Assert.Equal(newdijkstraLength2, graph._edges["2T3H"]._tail._dijkstraLength);
 
         void TestEdgeValues((int?, int?, int) edge, Edge g_edge)
         {
