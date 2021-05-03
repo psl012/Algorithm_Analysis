@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ui/suGJFk9nhXZ5+zhOOehG867+AhdNKYMfeiaJ9JycpSrapujgHOo1e1pm5E6lB4+wX10BgbcPeSeeYPTPr2w==",
+  "dgSpecHash": "qvBzBukpOPwLJJZTFxaO5hrItLNdGUVnh1Nhz9g+ekKlEqhsnLyv30/XN9XS/ZkZic9Iy8JKfIWA6KrJykSUrg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 7 Programming Assignment\\Week 7 Programming Assignment.csproj",
   "expectedPackageFiles": [
@@ -94,7 +94,19 @@
     "C:\\Users\\Paul\\.nuget\\packages\\xunit.core\\2.4.1\\xunit.core.2.4.1.nupkg.sha512",
     "C:\\Users\\Paul\\.nuget\\packages\\xunit.extensibility.core\\2.4.1\\xunit.extensibility.core.2.4.1.nupkg.sha512",
     "C:\\Users\\Paul\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
+    "C:\\Users\\Paul\\.nuget\\packages\\xunit.microsoft.visualstudio.testtools.unittesting\\1.0.0-beta-1011\\xunit.microsoft.visualstudio.testtools.unittesting.1.0.0-beta-1011.nupkg.sha512",
     "C:\\Users\\Paul\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Xunit.Microsoft.VisualStudio.TestTools.UnitTesting 1.0.0-beta-1011' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Xunit.Microsoft.VisualStudio.TestTools.UnitTesting",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

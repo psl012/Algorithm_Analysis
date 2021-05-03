@@ -9,6 +9,7 @@
       "Week 7 Programming Assignment/1.0.0": {
         "dependencies": {
           "Microsoft.NET.Test.Sdk": "16.10.0-release-20210429-01",
+          "Xunit.Microsoft.VisualStudio.TestTools.UnitTesting": "1.0.0-beta-1011",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.3"
         },
@@ -1086,6 +1087,14 @@
           }
         }
       },
+      "Xunit.Microsoft.VisualStudio.TestTools.UnitTesting/1.0.0-beta-1011": {
+        "runtime": {
+          "lib/net46/Xunit.Microsoft.VisualStudio.TestTools.UnitTesting.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "xunit.runner.visualstudio/2.4.3": {}
     }
   },
@@ -1724,6 +1733,13 @@
       "sha512": "sha512-7e/1jqBpcb7frLkB6XDrHCGXAbKN4Rtdb88epYxCSRQuZDRW8UtTfdTEVpdTl8s4T56e07hOBVd4G0OdCxIY2A==",
       "path": "xunit.extensibility.execution/2.4.1",
       "hashPath": "xunit.extensibility.execution.2.4.1.nupkg.sha512"
+    },
+    "Xunit.Microsoft.VisualStudio.TestTools.UnitTesting/1.0.0-beta-1011": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VjLnlxcR/IOSfwVdiJvwYHCdI4PqkeONjUBqsOHHgYc36cIHjy+x8amz0bGVwtPo4LOD5aoo7RCX+iNzqR+/fg==",
+      "path": "xunit.microsoft.visualstudio.testtools.unittesting/1.0.0-beta-1011",
+      "hashPath": "xunit.microsoft.visualstudio.testtools.unittesting.1.0.0-beta-1011.nupkg.sha512"
     },
     "xunit.runner.visualstudio/2.4.3": {
       "type": "package",

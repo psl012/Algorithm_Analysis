@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[16.10.0-release-20210429-01, )"
             },
+            "Xunit.Microsoft.VisualStudio.TestTools.UnitTesting": {
+              "target": "Package",
+              "version": "[1.0.0-beta-1011, )"
+            },
             "xunit": {
               "target": "Package",
               "version": "[2.4.1, )"
