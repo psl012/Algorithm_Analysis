@@ -10,6 +10,17 @@ namespace Week_7_Programming_Assignment
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            FileProcessor fileProcessor = new FileProcessor();
+            MedianMaintenance medianMaintenance = new MedianMaintenance();
+            int[] testData = fileProcessor.ReadTextFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 7 Programming Assignment\TestCases\Real Test.txt");
+
+            foreach(int num in testData)
+            {
+                medianMaintenance.FindMedian(num);
+            }
+
+            Console.WriteLine("Final Answer: " + medianMaintenance.GetFinalAnswer());
+
             Console.ReadKey();
         }
     }
@@ -29,8 +40,7 @@ namespace Week_7_Programming_Assignment
         public List<int> _listOfMedian {get; private set;} = new List<int>();
         MaxIntHeap _h1 = new MaxIntHeap();
         MinIntHeap _h2 = new MinIntHeap();
-        int _round = 0;
-
+        
         public int FindMedian(int number)
         {
             int medianCandidate;
