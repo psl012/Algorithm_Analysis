@@ -41,53 +41,19 @@ namespace Week_7_Programming_Assignment
             }
             else if(_listOfMedian.Count == 1)
             {
-                if(number < _h1.peek())
-                {
-                    _h1.add(number);
-                }
-                else
-                {
-                    _h2.add(number);
-                }
+                if(number < _h1.peek()) _h1.add(number);
+                else _h2.add(number);
+
                 medianCandidate = _h1.peek();
             }
-
             else
             {
-                if(number < _h1.peek())
-                {
-                    _h1.add(number);
- 
-                }
-                else if (number > _h2.peek())
-                {
-                    _h2.add(number);
-     
-                }
-                else
-                {
-                    _h1.add(number);
-                }
-
-                if(_h1._size - _h2._size == 0)
-                {
-                    medianCandidate = _h1.peek();
-                }
-                else if(_h1._size - _h2._size == 1)
-                {
-                    medianCandidate = _h1.peek();
-                }
-                else if(_h2._size - _h1._size ==1)
-                {
-                    medianCandidate = _h2.peek();
-                }
-                else
-                {
-                    medianCandidate = _h1.peek();
-                }
-
+                if (number > _h2.peek()) _h2.add(number);
+                else _h1.add(number);
+                
+                if(_h2._size - _h1._size == 1) medianCandidate = _h2.peek();
+                else medianCandidate = _h1.peek();
             }
-
             if(_h1._size - _h2._size >= 2)
             {
                 _h2.add(_h1.pull());
