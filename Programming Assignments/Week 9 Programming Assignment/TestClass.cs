@@ -68,5 +68,23 @@ public class TestClass
         {
             Assert.Equal(valueAnswer[i]._jobValue, myJobAnswer[i]._jobValue);
         }
+
+        // Difference Test
+        Assert.Equal(68615, jobScheduler.GetWeightedSum(myJobAnswer));
+    }
+
+    [Fact]
+    public void RatioCriterion_Test()
+    {
+        FileReader fileReader = new FileReader();
+        (int, Job[]) myJobData = fileReader.ReadJobFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 9 Programming Assignment\TestCases\Test Case 1.txt");
+        JobScheduler jobScheduler = new JobScheduler();
+        
+        // Act
+        Job[] myJobAnswer = jobScheduler.RatioCriterion(myJobData.Item2);
+
+        // Assert
+        Assert.Equal(67247, jobScheduler.GetWeightedSum(myJobAnswer));
+
     }
 }

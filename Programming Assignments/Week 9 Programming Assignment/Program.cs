@@ -38,6 +38,30 @@ namespace Week_9_Programming_Assignment
             return arrayOfJobs;
         }
 
+        public Job[] RatioCriterion(Job[] arrayOfJobs)
+        {
+            ClearJobValues(arrayOfJobs);
+            for(int i=0; i<arrayOfJobs.Length; i++)
+            {
+                arrayOfJobs[i]._jobValue = arrayOfJobs[i]._weight / arrayOfJobs[i]._length;
+            }
+            _quickSort.Sort(arrayOfJobs, 0, arrayOfJobs.Length - 1);
+            
+            return arrayOfJobs;
+        }
+
+        public float GetWeightedSum(Job[] arrayOfJobs)
+        {
+            float cTime = 0;
+            float weightedSum = 0;
+            foreach(Job job in arrayOfJobs)
+            {
+                cTime += job._length;
+                weightedSum += cTime*job._weight;
+            }
+            return weightedSum;
+        }
+
         void ClearJobValues(Job[] arrayOfJobs)
         {
             foreach(Job j in arrayOfJobs)
@@ -69,9 +93,9 @@ namespace Week_9_Programming_Assignment
 
     class Job
     {
-        public int _weight {get; private set;}
-        public int _length {get; private set;}
-        public int _jobValue;
+        public float _weight {get; private set;}
+        public float _length {get; private set;}
+        public float _jobValue;
 
         public Job(int weight, int length, int jobValue = -9999)
         {
@@ -87,20 +111,31 @@ namespace Week_9_Programming_Assignment
                                         int high)
         {
             //1. Select a pivot point.
-            int pivot = array[high]._jobValue;
+            float pivot = array[high]._jobValue;
 
             int lowIndex = (low - 1);
 
             //2. Reorder the collection.
             for (int j = low; j < high; j++)
             {
-                if (array[j]._jobValue >= pivot)
+                if (array[j]._jobValue > pivot)
                 {
                     lowIndex++;
 
                     Job temp = array[lowIndex];
                     array[lowIndex] = array[j];
                     array[j] = temp;
+                }
+                else if( array[j]._jobValue == pivot)
+                {
+                    if(array[j]._weight > array[high]._weight)
+                    {
+                        lowIndex++;
+
+                        Job temp = array[lowIndex];
+                        array[lowIndex] = array[j];
+                        array[j] = temp;
+                    }
                 }
             }
 
