@@ -85,6 +85,5 @@ public class TestClass
 
         // Assert
         Assert.Equal(67247, jobScheduler.GetWeightedSum(myJobAnswer));
-
     }
 }

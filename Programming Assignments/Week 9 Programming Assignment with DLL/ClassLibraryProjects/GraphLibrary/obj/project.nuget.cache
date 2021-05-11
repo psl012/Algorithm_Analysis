@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "JFLBteufb6nfwXWFohPvFQJljW4caUh5/W2fj7n+3LeYqcCA7l31lHSSTBKRGg4G5UIa6o1y0G3DzIC0cZRoIw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\GraphLibrary\\GraphLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Paul\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Paul\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

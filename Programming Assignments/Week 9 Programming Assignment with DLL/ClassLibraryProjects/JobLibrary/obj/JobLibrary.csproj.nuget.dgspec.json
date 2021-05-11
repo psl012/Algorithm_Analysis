@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\JobLibrary.csproj": {}
+    "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\JobLibrary.csproj": {
+    "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\JobLibrary.csproj",
-        "projectName": "JobLibrary",
-        "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\JobLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj",
+        "projectName": "Joblibrary",
+        "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj",
         "packagesPath": "C:\\Users\\Paul\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\obj\\",
         "projectStyle": "PackageReference",

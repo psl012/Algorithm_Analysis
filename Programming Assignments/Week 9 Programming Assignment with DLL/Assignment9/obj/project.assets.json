@@ -1665,14 +1665,24 @@
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "JobLibrary/1.0.0": {
+      "GraphLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "compile": {
-          "bin/placeholder/JobLibrary.dll": {}
+          "bin/placeholder/GraphLibrary.dll": {}
         },
         "runtime": {
-          "bin/placeholder/JobLibrary.dll": {}
+          "bin/placeholder/GraphLibrary.dll": {}
+        }
+      },
+      "Joblibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Joblibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Joblibrary.dll": {}
         }
       }
     }
@@ -5914,15 +5924,21 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "JobLibrary/1.0.0": {
+    "GraphLibrary/1.0.0": {
       "type": "project",
-      "path": "../ClassLibraryProjects/JobLibrary/JobLibrary.csproj",
-      "msbuildProject": "../ClassLibraryProjects/JobLibrary/JobLibrary.csproj"
+      "path": "../ClassLibraryProjects/GraphLibrary/GraphLibrary.csproj",
+      "msbuildProject": "../ClassLibraryProjects/GraphLibrary/GraphLibrary.csproj"
+    },
+    "Joblibrary/1.0.0": {
+      "type": "project",
+      "path": "../ClassLibraryProjects/JobLibrary/Joblibrary.csproj",
+      "msbuildProject": "../ClassLibraryProjects/JobLibrary/Joblibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "JobLibrary >= 1.0.0",
+      "GraphLibrary >= 1.0.0",
+      "Joblibrary >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.10.0-release-20210429-01",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -5954,8 +5970,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\JobLibrary.csproj": {
-              "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\JobLibrary.csproj"
+            "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\GraphLibrary\\GraphLibrary.csproj": {
+              "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\GraphLibrary\\GraphLibrary.csproj"
+            },
+            "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj": {
+              "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj"
             }
           }
         }
