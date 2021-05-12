@@ -2,6 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassLibraryProjects\JobLibrary\Joblibrary.csproj" />
     <ProjectReference Include="..\ClassLibraryProjects\GraphLibrary\GraphLibrary.csproj" />
+    <ProjectReference Include="..\ClassLibraryProjects\HeapLibrary\HeapLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0-release-20210429-01" />

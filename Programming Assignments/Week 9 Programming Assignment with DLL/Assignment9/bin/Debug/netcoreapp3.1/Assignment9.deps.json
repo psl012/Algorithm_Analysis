@@ -9,6 +9,7 @@
       "Assignment9/1.0.0": {
         "dependencies": {
           "GraphLibrary": "1.0.0",
+          "HeapLibrary": "1.0.0",
           "Joblibrary": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.10.0-release-20210429-01",
           "xunit": "2.4.1",
@@ -1094,6 +1095,11 @@
           "GraphLibrary.dll": {}
         }
       },
+      "HeapLibrary/1.0.0": {
+        "runtime": {
+          "HeapLibrary.dll": {}
+        }
+      },
       "Joblibrary/1.0.0": {
         "runtime": {
           "Joblibrary.dll": {}
@@ -1745,6 +1751,11 @@
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
     },
     "GraphLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HeapLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

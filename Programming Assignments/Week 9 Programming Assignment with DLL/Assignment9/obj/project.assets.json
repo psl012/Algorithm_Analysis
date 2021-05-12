@@ -1675,6 +1675,16 @@
           "bin/placeholder/GraphLibrary.dll": {}
         }
       },
+      "HeapLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/HeapLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HeapLibrary.dll": {}
+        }
+      },
       "Joblibrary/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -5929,6 +5939,11 @@
       "path": "../ClassLibraryProjects/GraphLibrary/GraphLibrary.csproj",
       "msbuildProject": "../ClassLibraryProjects/GraphLibrary/GraphLibrary.csproj"
     },
+    "HeapLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ClassLibraryProjects/HeapLibrary/HeapLibrary.csproj",
+      "msbuildProject": "../ClassLibraryProjects/HeapLibrary/HeapLibrary.csproj"
+    },
     "Joblibrary/1.0.0": {
       "type": "project",
       "path": "../ClassLibraryProjects/JobLibrary/Joblibrary.csproj",
@@ -5938,6 +5953,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "GraphLibrary >= 1.0.0",
+      "HeapLibrary >= 1.0.0",
       "Joblibrary >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.10.0-release-20210429-01",
       "xunit >= 2.4.1",
@@ -5972,6 +5988,9 @@
           "projectReferences": {
             "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\GraphLibrary\\GraphLibrary.csproj": {
               "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\GraphLibrary\\GraphLibrary.csproj"
+            },
+            "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\HeapLibrary\\HeapLibrary.csproj": {
+              "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\HeapLibrary\\HeapLibrary.csproj"
             },
             "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj": {
               "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\JobLibrary\\Joblibrary.csproj"

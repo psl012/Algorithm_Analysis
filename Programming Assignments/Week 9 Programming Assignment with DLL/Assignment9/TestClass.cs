@@ -1,5 +1,8 @@
 using Xunit;
 using JobLibrary;
+using Assignment9;
+using System.Collections.Generic;
+using GraphLibrary;
 
 public class TestClass
 {
@@ -85,5 +88,52 @@ public class TestClass
 
         // Assert
         Assert.Equal(67247, jobScheduler.GetWeightedSum(myJobAnswer));
+    }
+
+    [Fact]
+
+    public void MST_UnitTest_1()
+    {
+        // Arrange
+        Week9FileReader fileReader = new Week9FileReader();
+        Prim prim = new Prim();
+
+        Dictionary<int, List<(int?, int)>> adjacentGraph = fileReader.GraphFileReader(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 9 Programming Assignment with DLL\Assignment9\Unit Test MST.txt");
+        Graph graph = new Graph(adjacentGraph);
+        int MSTLengthAnswer = 7;
+
+        // Act
+        List<Edge> mst = prim.Apply(graph, graph._vertices[1]);
+        int myAnswer = 0;
+        foreach(Edge ed in mst)
+        {
+            myAnswer += ed._length;
+        }
+
+        // Assert
+        Assert.Equal(MSTLengthAnswer, myAnswer);
+    }
+
+    [Fact]
+    public void MST_UnitTest_2()
+    {
+        // Arrange
+        Week9FileReader fileReader = new Week9FileReader();
+        Prim prim = new Prim();
+
+        Dictionary<int, List<(int?, int)>> adjacentGraph = fileReader.GraphFileReader(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 9 Programming Assignment with DLL\Assignment9\Unit Test MST 2.txt");
+        Graph graph = new Graph(adjacentGraph);
+        int MSTLengthAnswer = 3;
+
+        // Act
+        List<Edge> mst = prim.Apply(graph, graph._vertices[1]);
+        int myAnswer = 0;
+        foreach(Edge ed in mst)
+        {
+            myAnswer += ed._length;
+        }
+
+        // Assert
+        Assert.Equal(MSTLengthAnswer, myAnswer);
     }
 }

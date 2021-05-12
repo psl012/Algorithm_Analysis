@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "aIbdxb44H0hMdVJu2HNHcEa+zZu1jSvP3tDPj9eDmPxsy4k6mG7kDDoGrJ55hRiEYFCd8t4CF701l6bn0ipxRw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 9 Programming Assignment with DLL\\ClassLibraryProjects\\HeapLibrary\\HeapLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Paul\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Paul\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
