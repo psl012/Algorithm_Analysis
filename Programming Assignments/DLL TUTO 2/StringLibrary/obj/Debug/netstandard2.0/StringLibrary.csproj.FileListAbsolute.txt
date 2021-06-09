@@ -1,0 +1,9 @@
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\bin\Debug\netstandard2.0\StringLibrary.deps.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\bin\Debug\netstandard2.0\StringLibrary.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\bin\Debug\netstandard2.0\StringLibrary.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\obj\Debug\netstandard2.0\StringLibrary.csprojAssemblyReference.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\obj\Debug\netstandard2.0\StringLibrary.AssemblyInfoInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\obj\Debug\netstandard2.0\StringLibrary.AssemblyInfo.cs
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\obj\Debug\netstandard2.0\StringLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\obj\Debug\netstandard2.0\StringLibrary.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL TUTO 2\StringLibrary\obj\Debug\netstandard2.0\StringLibrary.pdb

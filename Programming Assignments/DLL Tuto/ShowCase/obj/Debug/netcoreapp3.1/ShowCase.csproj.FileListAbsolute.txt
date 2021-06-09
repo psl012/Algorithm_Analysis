@@ -1,0 +1,16 @@
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\ShowCase.exe
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\ShowCase.deps.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\ShowCase.runtimeconfig.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\ShowCase.runtimeconfig.dev.json
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\ShowCase.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\ShowCase.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\StringLibrary.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\bin\Debug\netcoreapp3.1\StringLibrary.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.csprojAssemblyReference.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.AssemblyInfoInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.AssemblyInfo.cs
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.csproj.CoreCompileInputs.cache
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.csproj.CopyComplete
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.dll
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.pdb
+C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\DLL Tuto\ShowCase\obj\Debug\netcoreapp3.1\ShowCase.genruntimeconfig.cache

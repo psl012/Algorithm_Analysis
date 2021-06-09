@@ -1,0 +1,59 @@
+The third design in algoruthm paragirm: Dynamic programmign
+
+WIS - Weighted Independent Se Problem
+
+Problem: G = (V,E) an undirectd graph
+		- Independent Set G is: subset S of G of compose of vetices na hindi magkatabi sa G 
+		
+
+THE WIS Problem
+	- Input: Undirected Graph G and nonnegative weights w for each vertex v 
+	- Output: An IS with the max sum of the weights 
+	
+	- As the number of vertices increases: IT EXPLODES
+	
+
+Linear-Time Algorithm for WIS in Paths 
+	- Optimal Solution must be constructed from optimal solutions of smaller subproblems 
+	- let G = (V,E) - we have a graph with edges (v1,v2)... (vn-1, vn) 
+	- we have nonnegative weights sir 
+	- Assume n >= 2
+	
+LETS SUPPOSE WE ALREADY HAVE AN S (MWIS)
+	- Case 1: vn is not in S (UNG NASa DULO WALA sa S)
+		- lets have a graph Gn-1 that has no vn 
+			- obviously S is an MWIS of Gn-1
+				- if not then a contradiction will happen 
+			
+		- upshot: if an MWIS excludes the last vertex then it is also the MWIS for its Gn-1
+		
+	- Case 2: vn is included in the last vertex 
+		- Therefore S does not include vn-1  
+			- so lets get Gn-2 
+				- S - vn is the IS of Gn-2 
+				
+WIS Optimal substructure
+	- S can only be one of those 2 cases above
+
+WIS Reccurrence
+	- Let Wi be the total weight of an MWIS of Gi
+
+Naive recurrsive approaceh 
+
+
+Iterative Bottom-up approach 
+	- For each i: 1 to n -> lets compute each Wi 
+	
+Reconstruction Algorithm 
+	- STOP, if u noticed we are only getting the max Weights.. but we need the VERTICES 
+	
+	- WIS algo above already made the path
+		- MWIS will use that path 
+			- exclude the current vn?
+			- or get the current vn?
+			
+			
+Principles of Dynamic Programming
+	- 1. Identify small collection of subproblems
+	- 2. We solve small subproblem: use these to solve bigger ones
+	- 3. 

@@ -1,0 +1,170 @@
+Knapsack Problem 
+	- specified by 2n + 1 positive integers
+		- n is the number of items 
+			- has value vi
+			- has size si 
+			- knapsack capacity C
+		
+	- Maximize vi while si <= C 
+
+Input; v1...vn, s1...sn, and C
+Output: S (a subset of the items that maximizes vi while maintaining si <= C)
+
+Optimal Structure and Recurrence
+	- To get the answer we can use the subproblem's optimal solutions to guide us 
+
+	- S either contains the last item or it doesn't
+
+Case 1: the last item is not part of the optimal S: Obviously our S can be used as the optimal solution for
+		the smaller subproblem that contains the first n-1 items 
+			- If there was an S* (an even more optimal solution for the n-1 items) then we land a contradiction
+		
+Case 2: the last item is a part of the optimal S: 
+			- only true when sn <= C (kasya ung last item sa C)
+			- this is now tricky to say that S is also the feasible solution for the first n-1 items.
+				- so we remove S and reserve/subtract the weight of sn to C to reserve re adding it again 	
+
+Lemma:
+	S is the optimal sol'n with n>= 1 items: S is either case 1 or case 2
+		- Case 1: we just copy the solution of the first n-1 items 
+		- Case 2: we copy the solution of the first n-1 items with adjusted C to reserve for sn and sn <= C 
+	
+	whichever is larger
+
+
+Corollary: Vic is: value of the first i items at max size total c 
+	Vic = Case 1: V(i-1, C) if si > C
+		= Case 2: max(V(i-1,C), V(i-1,c-si + vi) if si <= C
+
+The subproblems: define them and solve them systematically 
+	- for now focus on an optimal solution for each subproblems 
+	- we have 2 parameters: i that goes from 0 to n and C that goes from 0 to C 
+	
+	
+KnapSack Pseudocode
+
+Input: Item Values: v1,... to vn and item sizes s1,... to sn knapsack Capacity C 
+Output: the max total value of a subset 
+
+A is a two dimensional array
+
+// base case 
+for c = 0 to C do
+	A[0][c] = 0 = we have no items available so all their value is 0 
+
+// for all the subproblems 
+for i = 1 to n: //  O(n) all in all
+	for c = 0 to C	 O(C) all in all
+		// use recurrence from corollary 16.5
+		if si > c then // the weight is > than the sack	
+			A[i[c[ = A[i-1][c]  // O(1) time
+		
+		else
+			A[i][c] = max {A[i-1][c], A[i-1][c-si] + vi}  O(1) time
+	
+
+return A[n][C]
+			
+ Runnint time is O(nc)
+ 
+Properties of knapsack 
+
+Reconstruction BOi:
+
+Input: A computed by knapsasck and C
+output: A knacksack solution
+
+S:= empty set 
+c:= C 
+
+for i = n down to 1 do 
+	if (si <= c and A[i-1][c-si] + vi >= A[i-1][c]	(case 2) then
+		S = S union i // include the i index 
+		c = c - si  // since we put the last item in the sack reduce its capacity 
+	else 
+		skip	
+return S
+
+
+Sequence Alignment problem
+	- Input compose of 2 strings and determine how similar are they
+	
+	- If two strings have no equal size then we can just insert a gap to make them equal... where to insert though?
+	
+	
+An alignment is a way of inserting gaps into one or both input strings so that they have equal length
+	- minimize the penalty
+		- penalty is from gaps and mismatches
+			- alpha_gap - cost of a gap
+			- alpha AT - cost of a mismatch
+	
+	
+Optimal Substructure
+	- 2 Cases
+		- last item matched so we can cleary say that the smaller problem matched too
+		
+
+Case 2: xm is matched with a gap
+		- since last item of Y is a gap then X' + Y is the optimal matching
+		
+Case 3: yn matched with a gap
+		- since last item of X is gap X + Y' is the optimal matching
+		- 
+So an optimal aliggnment is either has 
+	- X' Y' when both ends mathced
+	- X' Y when Y has gap
+	- X Y' when X has gap 
+	
+Recurrence	
+	The  Pmn is the min{case 1 added the penalty of xy, case 2 added the penalty of Y, case 3 added the penalty of X}
+	
+	
+Optimal Binary Search Tree
+	- factors in min. weighted search time = sum(pi * (search time for ki in T or what we call its depth in T + 1))
+		- Names of the keys are not important
+		- pi does not neceassrily sum up to 1 
+		- Unconcerned with unsuccesful searches 
+	
+	- greedy algo cannot be used because.... we have to follow bst guidelines
+	
+
+Optimal Substructure
+	- We cannot use divide and conquer 
+		- we can't just pick a root haphazardly, yes even the median does not work. Because the root will affect our
+			choices for the subproblems
+		
+		- IF ONLY WE KNOW THE ROOT (omg)
+		- TRY ALL THE POSSIBLE ROOTS?!?!?!
+		
+	
+	- Consider an optimal binary subtree T with keys {1, 2,..., n} and frequencies p1, p2,..., pn 
+		- N DIFFERENT CASES
+		
+	- Case r: The root of T has key r 
+		- T1 has 1 to r-1 while T2 has r+1 to n
+			- satisfies bst props.
+			- must show that these two are optimal bst for their respective subproblems
+				- NNow the contradiction method will work if we found T* 
+			
+	
+	- LEMMA: Optimal BST substructure
+		- If T is an optimal tree then 
+			- T1 is an optimal tree for 1 - r-1 and p1 to pr-1
+			- ditto T2
+			HOW THE FVKC SHOULD I INTEGRATE THIS
+			
+	
+OPTIMAL BST RECURRENCE
+	- Let Wij denote weighted search time of an optimal binary search tree with keys from i to j
+	-
+	
+	W1n is the weighted search time of an optimal binary tree with keys (1 to n) and frequencies (1 to n)
+		if i > j we can't have that (that is decreasing) just make it 0 
+		
+		
+		S = 1
+		i = 1
+		
+		A[1][2] = sum from 1 to 2  ng pk + min(1 to 2) ng A[1][0] + A[2][2] 
+														  A[1][1] + A[3][2]
+														  

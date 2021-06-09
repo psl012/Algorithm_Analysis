@@ -1,0 +1,125 @@
+Shortest Path revisited: Bellman-Ford algorithm
+	- A slower but more general version
+	- solves the shortest path problem with negative edge lengths
+
+Single Source Shortest Path Problem
+	- Input: Directed graph G = (V,E) with length le for each edge e and we have the source vertex s 
+		- length of the path is the sum of its edges
+		- Output: compute for every possible destination v, the minimum length d(s,v); if no path exist then it is + inf
+		
+Negative Cycles:
+	- a problematic issue for the algorithm 
+		- if we allow it: it will cause an infinite loop
+		- if we forbid cycles the problem becomes an NP problem
+	
+	- So if it contains a negative cycle we stop the algorithm
+	
+	
+Quiz 18.1
+	- Consider an SSP with n vertics, m edges, and a source vertex s and no negative cycles 
+		a.) 
+		
+
+Bellman-Ford Algrotithm
+	- computes shortest path or returns a saying that it has a negatie cycle
+	
+
+The Subproblem:
+	- dynamic programming: how an optimal solution can be obtained from optimal solutions of smaller subproblems
+		- so about the subgraphs... we have no ordering of vertices 
+		
+	
+	- the algo is inspired by the sequential nature of the output of the SSSP 
+		- intuitively a shortest path P' of as shortest path P would be itself a shortest path but to a
+			different destination
+				- So what though?
+				- if we have negative lengths length of P' might be even larger than P 
+				- what we know is that P' contains fewer edges 	
+			
+		- So we have this: Introduce a hop count parmaeter i: it restring the number of edges allowed in a path 
+			- bigger i means bigger subproblem: 
+			
+				- if i = 0 then obviousy we can't even go to an edge 
+				- when i = 1 then we can go to neighbors
+					- if neighbor is not the target.. then the target range is +inf 
+					
+				- as we increase i, we might find more paths that have less costs as more paths are opened to us
+				
+	
+Bellman-Ford ALgorightm: the subproblems 
+	Compute Liv: i is the number of edges allowed from s to v 
+	
+	Unlike previous dynamic programming case studies: every subproblems work with full input
+		- not a prefix, not a suffix.. the whole graph!
+		- still we control the allowable size of the output 
+		- No need to bother when i > n, this implies O(n^2) and we go back to a visited vertex (not optimal)
+		
+		
+Now the optimal substructure:
+	COnsider G = (V,E) with source vertex s and fix a subproblem 
+	Suppose P is an s-v path with AT MOST i edges and a shortest path 
+	
+Case 1: Path P has i-1 or fewer edges
+	- surely the solution obtained here is just the same sosultuion from the i-1 edges or fewer
+
+Case 2: P has i edges:
+	- Let L denote the length of P 
+	- Let P' denote the first i-1 edges of P, and (w,v) its final hop
+		- familiar: P' is an s-w path at most i-1 edges and length L - lwv 
+			- P' is an optimal path for s-w (same reasoning as before)
+			
+	- P is a shortest path of a smaller subproblem plus its final hop w,v 
+
+So the optimal solution narrows down to Case 1 or 2
+	- Let G be a directed graph 
+		- i >= 1 
+		- let P be shortest s-v path in G with at most i edges 
+			- p is either case 1 or 2 
+
+
+Recurrence:
+	- Let Liv is the min length of an s-v path at most i edges 
+	
+	Liv = min (case 1 or case 2)
+		- case 2 in detailed: the min out of all the possilbe candidates of case 2 
+
+When should we stop? 
+	- yeahhhh.. so how large should i be? Noticed that if case 1 happens... it will forever happen
+	
+
+
+Lemma 18.4: Lnv = Ln-1,v (n is the number of vertices) 
+	as i reaches n (the number of vertices) L stabilizes 
+	
+Pseudocode
+
+Input: Directed Graph G = (V,E) in adjacency list representation 
+Output: dist(s,v) for every element of V 
+
+
+// subproblems 
+
+A = A[n+1, n]  // n is the number of vertices 
+	 = i,  v
+// base case i = 0
+A[0,s] = 0; // our destination vertex is our source vertex 	
+
+for each v not equal to s 
+	A[0,v] is +inf // we can't even choose an edge becasue i = 0;
+	
+	for i = 1 to n do   // subproblem size  
+		stable = true;  // for stopping 
+		for v elem of V do
+		
+		A[i,v] = is either case 1 or the minimum of case 2 
+		
+		if our answer is not equal to prevous iteration answer then it is not stable 
+		else 
+		it is stable  and we return the answer of the previous iteretaon (lesser i but same optimal answer)
+		
+
+// now if i > n 
+	// clearly there is a negative cycle 
+
+
+	
