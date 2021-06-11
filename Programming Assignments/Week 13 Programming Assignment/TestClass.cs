@@ -78,18 +78,23 @@ public class TestClass
         ShortestPath shortestPath = new ShortestPath();
 
         // Act
-        List<int> shortestCost = new List<int>();
+        string shortestCost="";
    
         foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
         {
             int s = entry.Key - 1;
             Console.WriteLine("-source vertex: " + entry.Key + "----------");
-            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+            string bellman = shortestPath.Bellman_Ford(adjGraph, s);
+                
+            if(bellman == Globals.NegativeCycle())
+            {
+                shortestCost = bellman;
+            }
         }
-
         // Assert
-        Assert.Equal(-545, shortestCost.Min());
+        Assert.Equal(Globals.NegativeCycle(), shortestCost);
     }
+
 
     [Fact]
     public void TestCase_2()
@@ -107,7 +112,7 @@ public class TestClass
         {
             int s = entry.Key - 1;
             Console.WriteLine("-source vertex: " + entry.Key + "----------");
-            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+            shortestCost.Add(Convert.ToInt32(shortestPath.Bellman_Ford(adjGraph, s)));
         }
 
         // Assert
@@ -130,7 +135,7 @@ public class TestClass
         {
             int s = entry.Key - 1;
             Console.WriteLine("-source vertex: " + entry.Key + "----------");
-            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+            shortestCost.Add(Convert.ToInt32(shortestPath.Bellman_Ford(adjGraph, s)));
         }
 
         // Assert
@@ -147,16 +152,21 @@ public class TestClass
         ShortestPath shortestPath = new ShortestPath();
 
         // Act
-        List<int> shortestCost = new List<int>();
+        string shortestCost="";
    
         foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
         {
             int s = entry.Key - 1;
             Console.WriteLine("-source vertex: " + entry.Key + "----------");
-            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+            string bellman = shortestPath.Bellman_Ford(adjGraph, s);
+                
+            if(bellman == Globals.NegativeCycle())
+            {
+                shortestCost = bellman;
+            }
         }
-
+        
         // Assert
-        Assert.Equal(-545, shortestCost.Min());
+        Assert.Equal(Globals.NegativeCycle(), shortestCost);
     }
 }

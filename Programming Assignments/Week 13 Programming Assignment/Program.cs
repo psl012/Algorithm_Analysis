@@ -11,7 +11,7 @@ namespace Week_13_Programming_Assignment
         {
             Console.WriteLine("Hello World!");
             FileReader fileReader = new FileReader();
-            Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase3.txt");
+            Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase4.txt");
 
             foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
             {
@@ -32,12 +32,28 @@ namespace Week_13_Programming_Assignment
             foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
             {
                 int s = entry.Key - 1;
-                Console.WriteLine("-source vertex: " + entry.Key + "----------");
-                shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+                string bellman = shortestPath.Bellman_Ford(adjGraph, s);
+                
+                if(bellman == Globals.NegativeCycle())
+                {
+                    Console.WriteLine(Globals.NegativeCycle());
+                    Console.ReadKey();
+                    return;
+                }
+
+                shortestCost.Add(Convert.ToInt32(bellman));
             }            
             Console.WriteLine("----");
             Console.WriteLine(shortestCost.Min());
             Console.ReadKey();
+        }
+    }
+
+    static class Globals
+    {
+        public static string NegativeCycle()
+        {
+            return "Negative Cycle Found!";
         }
     }
 
@@ -62,7 +78,7 @@ namespace Week_13_Programming_Assignment
     {
         CustomArray<int> customArray = new CustomArray<int>();
         
-        public int Bellman_Ford(Dictionary<int, List<(int?,int)>> adjGraph, int s)
+        public string Bellman_Ford(Dictionary<int, List<(int?,int)>> adjGraph, int s)
         {
             // Subproblems: A[i,j]
             int n = adjGraph.Count;
@@ -107,7 +123,6 @@ namespace Week_13_Programming_Assignment
                                 {
                                     w = E.Key-1;
                                     wvCost = case_2Cost;
-                                    Console.WriteLine(wvCost + " iteration: " + i + " destination " + v);
                                 } 
                             }
                         }
@@ -125,10 +140,10 @@ namespace Week_13_Programming_Assignment
                 if(stable)
                 {
                     int[] rowAnswer = customArray.GetRow(A,i);
-                    return rowAnswer.Min();
+                    return rowAnswer.Min().ToString();
                 }
             }
-            return -545;
+            return Globals.NegativeCycle();
         }
     }
 
