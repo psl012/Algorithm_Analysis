@@ -1,6 +1,7 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Week_13_Programming_Assignment;
 
 public class TestClass
@@ -67,16 +68,95 @@ public class TestClass
         Assert.Equal(-2, adjGraph[4][0].Item2);
     }
 
-
+    
     [Fact]
     public void TestCase_1()
     {
-        // Expected answer: negative cycle
+        // Arrange
+        FileReader fileReader = new FileReader();
+        Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase1.txt");
+        ShortestPath shortestPath = new ShortestPath();
+
+        // Act
+        List<int> shortestCost = new List<int>();
+   
+        foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+        {
+            int s = entry.Key - 1;
+            Console.WriteLine("-source vertex: " + entry.Key + "----------");
+            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+        }
+
+        // Assert
+        Assert.Equal(-545, shortestCost.Min());
     }
 
     [Fact]
     public void TestCase_2()
     {
-        // Expected answer: -2
+        // Expected answer: -2       
+        // Arrange
+        FileReader fileReader = new FileReader();
+        Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase2.txt");
+        ShortestPath shortestPath = new ShortestPath();
+
+        // Act
+        List<int> shortestCost = new List<int>();
+   
+        foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+        {
+            int s = entry.Key - 1;
+            Console.WriteLine("-source vertex: " + entry.Key + "----------");
+            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+        }
+
+        // Assert
+        Assert.Equal(-2, shortestCost.Min());
+    }
+
+    [Fact]
+    public void TestCase_3()
+    {
+        // Expected answer: -2       
+        // Arrange
+        FileReader fileReader = new FileReader();
+        Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase3.txt");
+        ShortestPath shortestPath = new ShortestPath();
+
+        // Act
+        List<int> shortestCost = new List<int>();
+   
+        foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+        {
+            int s = entry.Key - 1;
+            Console.WriteLine("-source vertex: " + entry.Key + "----------");
+            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+        }
+
+        // Assert
+        Assert.Equal(-2, shortestCost.Min());
+    }
+
+    [Fact]
+    public void TestCase_4()
+    {
+        // Expected answer: -2       
+        // Arrange
+        FileReader fileReader = new FileReader();
+        Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase4.txt");
+        ShortestPath shortestPath = new ShortestPath();
+
+        // Act
+        List<int> shortestCost = new List<int>();
+   
+        foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+        {
+            int s = entry.Key - 1;
+            Console.WriteLine("-source vertex: " + entry.Key + "----------");
+            shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+        }
+
+        // Assert
+        Assert.Equal(-545, shortestCost.Min());
     }
 }

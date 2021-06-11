@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Week_13_Programming_Assignment
 {
@@ -10,7 +11,7 @@ namespace Week_13_Programming_Assignment
         {
             Console.WriteLine("Hello World!");
             FileReader fileReader = new FileReader();
-            Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase1.txt");
+            Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase3.txt");
 
             foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
             {
@@ -25,13 +26,110 @@ namespace Week_13_Programming_Assignment
                 Console.WriteLine();
             }
 
+            ShortestPath shortestPath = new ShortestPath();
+            List<int> shortestCost = new List<int>();
+
+            foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+            {
+                int s = entry.Key - 1;
+                Console.WriteLine("-source vertex: " + entry.Key + "----------");
+                shortestCost.Add(shortestPath.Bellman_Ford(adjGraph, s));
+            }            
+            Console.WriteLine("----");
+            Console.WriteLine(shortestCost.Min());
             Console.ReadKey();
+        }
+    }
+
+    public class CustomArray<T>
+    {
+        public T[] GetColumn(T[,] matrix, int columnNumber)
+        {
+            return Enumerable.Range(0, matrix.GetLength(0))
+                    .Select(x => matrix[x, columnNumber])
+                    .ToArray();
+        }
+
+        public T[] GetRow(T[,] matrix, int rowNumber)
+        {
+            return Enumerable.Range(0, matrix.GetLength(1))
+                    .Select(x => matrix[rowNumber, x])
+                    .ToArray();
         }
     }
 
     class ShortestPath
     {
-        // Insert stuffs here tomorrow paul
+        CustomArray<int> customArray = new CustomArray<int>();
+        
+        public int Bellman_Ford(Dictionary<int, List<(int?,int)>> adjGraph, int s)
+        {
+            // Subproblems: A[i,j]
+            int n = adjGraph.Count;
+            int[,] A = new int[n + 1, n];
+
+            // base cases (i  = 0)
+            A[0, s] = 0;
+            foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+            {
+                int v = entry.Key - 1;
+                if(v!=s)
+                {
+                    A[0, v] = 99999;
+                }
+            }
+
+            // Systematically solve all subproblems
+            bool stable = true;
+            
+            // the number of allowable jumps
+            for (int i = 1; i < n + 1; i++)
+            {
+                stable = true;
+                
+                // Get the case 2 min  
+                int w = 0;
+                foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
+                {
+                    // destination
+                    int v = entry.Key-1;
+
+                    int wvCost = 99999; 
+                    foreach(KeyValuePair<int, List<(int?, int)>> E in adjGraph)
+                    {
+
+                        foreach((int?, int) head in E.Value)
+                        {
+                            if(head.Item1-1 == v && A[i-1, E.Key-1] < 99999)
+                            {                            
+                                int case_2Cost = A[i-1, E.Key-1] + head.Item2;
+                                if(case_2Cost < wvCost)
+                                {
+                                    w = E.Key-1;
+                                    wvCost = case_2Cost;
+                                    Console.WriteLine(wvCost + " iteration: " + i + " destination " + v);
+                                } 
+                            }
+                        }
+                    }
+
+                    // use Recurrence from Corollary 18.2
+                    A[i,v] = Math.Min(A[i-1,v], wvCost);
+
+                    if(A[i,v] != A[i-1,v])
+                    {
+                        stable = false;
+                    }
+                }
+
+                if(stable)
+                {
+                    int[] rowAnswer = customArray.GetRow(A,i);
+                    return rowAnswer.Min();
+                }
+            }
+            return -545;
+        }
     }
 
     class FileReader
