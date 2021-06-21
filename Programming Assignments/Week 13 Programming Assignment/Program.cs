@@ -11,8 +11,9 @@ namespace Week_13_Programming_Assignment
         {
             Console.WriteLine("Hello World!");
             FileReader fileReader = new FileReader();
-            Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\TestCases\TestCase4.txt");
+            Dictionary<int, List<(int?,int)>> adjGraph = fileReader.ReadFile(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 13 Programming Assignment\g1.txt");
 
+            
             foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
             {
                 Console.Write(entry.Key + ": " );
@@ -25,13 +26,15 @@ namespace Week_13_Programming_Assignment
 
                 Console.WriteLine();
             }
-
+            
+            
             ShortestPath shortestPath = new ShortestPath();
             List<int> shortestCost = new List<int>();
 
             foreach(KeyValuePair<int, List<(int?, int)>> entry in adjGraph)
             {
                 int s = entry.Key - 1;
+              //  int s = 0;
                 string bellman = shortestPath.Bellman_Ford(adjGraph, s);
                 
                 if(bellman == Globals.NegativeCycle())

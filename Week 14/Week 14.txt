@@ -1,0 +1,134 @@
+NP-Hardness
+
+In part 1-3 our algortihms were handpicked specifically for their problem and given to us however
+many problems have no fast solution givn for them.. yet
+
+
+We will teach you how to recognize if the problems that you may encounter in the future is already listed in 
+the super hard problems in humanity.
+
+
+MST vs TSP 
+	- the hard problem in disguise
+	- Reminder MST is making a tree with minimum total cost and the tree must touch all edges 
+		- solvable by Prim or Kruskal and can be solved fast via the right data structure
+	
+TSP
+	- Input: complete undirected graph G = (V,E) and a real valued cost ce for each edge e elem E
+	- Output: a "tour" with the min. sum of edge cost 
+					- a tour is a cycle that vists every vertex exactly once 
+		- given vertices >= 3 we can have 1/2*(n-1)! tours... from n! you removed the redundant 
+				- redundancy like: a,b,c,d; b,c,d,a; c,d,a,b' d,a,b,c so divide an n to make them all into 1
+				- redundancy like: a->b->c->d; a->d->c->b; etc
+	
+TSP can always be solved by brute force
+	- since we know TSP grows in a n! rate... Once the number is big enough it might not fit
+	- The question is is there a clue of solving this via MST 
+	- TSP is used when you have tasks needed to be completed in a sequence and each succedding task is dependent 
+		on the time of the preceding tasks
+			- Assembling of cars in a factroy with the time of assembly of a car = to a fixed coost
+			
+	- NO algorithm exist that can run TSP ar O(n^1000) time 
+	
+Possible level of Expertise
+	- Point of NP-hardness: classify if a problem is easy like MST or hard like TSP 
+	
+	- easy: can be solved by polynomial time algorithm-
+	- hard: needs exponential time at worst case 
+	
+Polynomial time algorithm
+	- the runnign time is close related to the input size and usually it is at O(n^d) time where n is the input size and
+		d is a constant 
+
+An easy problem is solvable by a polynomial time algorithm 	or which an algorithm wherein solvable input size scales
+multipliclatively with increasing computational power
+
+
+Polynomial-Time Solvable Prolems
+On an extreme:
+	- An algo that runs on O(n^100) time on size n inputs counts as polynomial time algo... yeah i know 
+	
+Relative Intractability:
+	We suspected a problem like TSP is not easy! How can we show with evidence it is an NP problem?
+		- most convincing case is a mathematical proof 
+				- but TSP as of now has neither incrimating it of unsolvable or having evidence it is solvable 
+			
+		- the job is now to differentiate tractale and intractable problems 
+			- classify problems based on their relative difficulty and declare it as hard as an overwhelming number of	
+				unsolved problems 
+			
+
+Weak evidences: just one polynomial time algo for TSP would be a dickslap in the face of all the scientist fighting that 
+				it is not solvable 
+				
+	
+Now the trick is to show that a problem like TSP is at least as hard as vast array of problems usolved group it in like 
+	a family of unsolved problems wherein: if u solve one then it will start a domino effect 
+
+In other words tons of hard problems are just variations of other hard problems 
+
+The P != NP COnjecture
+	- as long no polynomial time algo can solve the problem p is not equal to NP so it is NP hard 
+	
+Randomized and Quantum algorithms (dunno what to say? just add quantum lels)
+	- As of now we only talked about deterministic algorithms not randomized algos 
+		- can rng escape from NP hards?
+		
+		
+Subtleties
+	- Oversimplified reasoning a p=np can be obtained if we get an algorithm of running time O(n^d)
+	
+	- Let us not forget that NP-hardness only exists today because P!=NP is not yet proven to be false
+		- the moment it is proven to be true the whole cs industry will be turned upside down 
+	
+	- dont forget the ones belonging in the freaking grey area 
+	
+Algorithmic strats for NP-hard problems 
+	- yeah sometimes we need to tackle it no choice 
+	
+	
+We can make NP ALgo but at a cost 
+	1.) Loss of generality - the algo will only be tailor fit for your problem
+	2.) Decrease in the percentage of correctness
+	3.) It may be slow 
+	
+
+Compromising generality
+	1.) Remember the WIS for no negative cycles? yeah thats an example
+
+Compromising Correctness
+	1.) The algorithm is correct on most inputs
+	2.) The algorithm is almost correct on all inputs 
+	3.) The answer is an estimate only
+	
+Compromising on speed
+	1.) Must be at least better than naive style/brute force 
+	2.) Or it will run quickly on inputs relevant to your applications
+	
+	
+Don't forget the efforts of people who came before us 
+
+Proving nP hardness 
+	1.) Master the art of reduction: reduce your problem into an NP hard problem
+	
+Reduction
+	Problem A reduces to PRoblem B if an algo solves Problem B we also solve problem A 
+		- we just a polynomial time subroutine to algo for B so that we get  the solution for A 
+
+1.) Findinf the median of an array 
+
+Quiz:
+	Suppose A can be solved by invoking a subroutine for Algo B at most T1(n) 
+		- perform T2(n) additional work 
+	
+	B is solved by T3(n) time 
+	
+	T1(n)T3(n) + T2(n)
+
+reDuctions spread tractability
+
+Now we are going to use reductions: to promote NP hardness 
+	- SUppose Problem A reduces to Problem B 
+		- A is NP hard then B is NP hard 
+		
+	
