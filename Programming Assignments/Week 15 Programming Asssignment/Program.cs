@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Week_15_Programming_Asssignment
 {
@@ -39,16 +40,21 @@ namespace Week_15_Programming_Asssignment
         {
             SetFunctions setFunctions = new SetFunctions();
             int[] index = CreateIndexSet(graph._vertices.Length);
-            List<int?>[] powerSetInd = setFunctions.RemoveNonBase(setFunctions.OrderedPowerSet(index), 0);
+
+            // Get the power sets
+            List<int?>[] powerSetInd = setFunctions.OrderedPowerSet(index);
 
             // Initialize A and n's
             int n = index.Length;
             int bar = 0;
+
+            // Initialize the A to the size of the column (length of the powerset) and size of the row (length of the destination)
             float[,] A = new float[powerSetInd.Length, n - 1];
 
             // base Case |S| = 2
             for(int i = 0; i < powerSetInd.Length; i++)
             {
+                // Initialization over we now reach Subsets with 3 or more elements
                 if(powerSetInd[i].Count > 2)
                 {
                     bar = i;
@@ -57,19 +63,77 @@ namespace Week_15_Programming_Asssignment
 
                 else if(powerSetInd[i].Count == 2)
                 {
+                    // Set size only is 2: which is the source (0) and the destination (1) so our j is the destination is the second element in the powerset
                     int j = (int) powerSetInd[i][1];
+
+                    // i is so that we are in the row with proper size 2 power set, j as i said is the destination
+                    // cij means the c1j in the pseudocode: graph._vertices[0] is the default while 0 ia the source and j is the dest
                     A[i, j] = graph._vertices[0]._neighbor[j];
                 } 
             }
 
+            // Subproblems
+            // bar is our checkpoint marker in the initial stage 
+            // note in the pseudocode its the subproblem size but we made the powerset in a way that iterating through it will pass through all the subproblems from smallest to largest
             for(int i = bar; i < powerSetInd.Length; i++)
             {
+                // the iteration of the powerset (the second for loop of the pesudocode is actually combined into one)
                 List<int?> S = powerSetInd[i];
+
+                // Iterate the destinations (j) and we must not include 0 thats why we start at 1        
                 for(int e = 1; e < S.Count; e++)
                 {
+                    // j stores the iteration of the destination 
                     int j = (int) S[e];
-                    A[i, j] = 0; // The min Corollary 21.2
+
+                    //A[i, j] = 0; // The min Corollary 21.2 
+                    // this is only one iteration atm
+
+                    // iterate through the current power set but do not include 0 and j for k
+                    foreach(int? k in S)
+                    {
+                        if(k != 0 && k != j)
+                        {
+                            // Get the location of the S-{j} in the power set
+                            int ind = BellmanRecurrence(powerSetInd, S, j);
+
+                            // i is the proper location of row in the corresponds to the right power set, j is the destination
+                            // ind  the proper location of row in the corresponds to the right S-{j}, k is the one in the psudocode 
+                            // and graph_vert... k j is the length from k to j
+                            A[i,j] = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
+
+                            // this is not finished we need to change this to get the minimum value for A[i,j] among the values of k in the iteration
+                        }
+                    }
                 }
+            }
+
+            int BellmanRecurrence(List<int?>[] powerSetInd, List<int?> S, int? j)
+            {
+                // Get the list the does not include j
+                List<int?> S_j = new List<int?>();
+                foreach(int? ss in S)
+                {
+                    if(ss != j)
+                    {
+                        S_j.Add(ss);
+                    }
+                }
+
+                int index = 0;
+
+                // iterate through the power set and get its index in the list that equals our S-{j}
+                for(int i = 0; i < powerSetInd.Length; i++)
+                {
+                    if(Enumerable.SequenceEqual(S_j, powerSetInd[i]))
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                return index;
+
             }
 
             
