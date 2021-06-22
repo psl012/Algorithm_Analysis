@@ -36,13 +36,13 @@ namespace Week_15_Programming_Asssignment
 
     class TSPFunction
     {
-        public void BellmanHeldKarp(Graph graph)
+        public float BellmanHeldKarp(Graph graph)
         {
             SetFunctions setFunctions = new SetFunctions();
             int[] index = CreateIndexSet(graph._vertices.Length);
 
             // Get the power sets
-            List<int?>[] powerSetInd = setFunctions.OrderedPowerSet(index);
+            List<int?>[] powerSetInd = setFunctions.RemoveNonBase(setFunctions.OrderedPowerSet(index), 0);
 
             // Initialize A and n's
             int n = index.Length;
@@ -87,11 +87,21 @@ namespace Week_15_Programming_Asssignment
                     int j = (int) S[e];
 
                     //A[i, j] = 0; // The min Corollary 21.2 
-                    // this is only one iteration atm
+                    // Set up the get minimum in the iteration
+                    
+                    // The index we want from S
+                    int k_index = 0;
+                    // The winning distance
+                    float minDistance = 9999999;
 
+                    // the winning BellmanRecurrence Index
+                    int br_winner = 0;
+                    
                     // iterate through the current power set but do not include 0 and j for k
-                    foreach(int? k in S)
+                    for(int kk = 0; kk < S.Count; kk++)
                     {
+                        // the current value of k in the iteration
+                        int? k = S[kk];
                         if(k != 0 && k != j)
                         {
                             // Get the location of the S-{j} in the power set
@@ -100,43 +110,66 @@ namespace Week_15_Programming_Asssignment
                             // i is the proper location of row in the corresponds to the right power set, j is the destination
                             // ind  the proper location of row in the corresponds to the right S-{j}, k is the one in the psudocode 
                             // and graph_vert... k j is the length from k to j
-                            A[i,j] = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
+                            //A[i,j] = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
 
                             // this is not finished we need to change this to get the minimum value for A[i,j] among the values of k in the iteration
+                            float minCandidate = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
+                            if(minCandidate < minDistance)
+                            {
+                                minDistance = minCandidate;
+                                k_index = (int) k;
+                                br_winner = ind;
+                            }
                         }
                     }
+                
+                A[i,j]   = A[br_winner, k_index] + graph._vertices[k_index]._neighbor[j];
                 }
-            }
 
-            int BellmanRecurrence(List<int?>[] powerSetInd, List<int?> S, int? j)
+            }   
+             // From destination 1 to n-1 we need to see which has the minimum using the largest subset V
+            int V_index = powerSetInd.Length - 1;
+            float superMinDistance = 9999999;
+            float superMinCandidate;
+            for(int fj = 1; fj < n; fj++)
             {
-                // Get the list the does not include j
-                List<int?> S_j = new List<int?>();
-                foreach(int? ss in S)
+                superMinCandidate = A[V_index, fj] + graph._vertices[fj]._neighbor[0];
+
+                if(superMinCandidate < superMinDistance)
                 {
-                    if(ss != j)
-                    {
-                        S_j.Add(ss);
-                    }
+                    superMinDistance = superMinCandidate;
                 }
+            } 
+            return superMinDistance;
+        }
 
-                int index = 0;
-
-                // iterate through the power set and get its index in the list that equals our S-{j}
-                for(int i = 0; i < powerSetInd.Length; i++)
+        
+        int BellmanRecurrence(List<int?>[] powerSetInd, List<int?> S, int? j)
+        {
+            // Get the list the does not include j
+            List<int?> S_j = new List<int?>();
+            foreach(int? ss in S)
+            {
+                if(ss != j)
                 {
-                    if(Enumerable.SequenceEqual(S_j, powerSetInd[i]))
-                    {
-                        index = i;
-                        break;
-                    }
+                    S_j.Add(ss);
                 }
-
-                return index;
-
             }
 
-            
+            int index = 0;
+
+            // iterate through the power set and get its index in the list that equals our S-{j}
+            for(int i = 0; i < powerSetInd.Length; i++)
+            {
+                if(Enumerable.SequenceEqual(S_j, powerSetInd[i]))
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+
         }
 
         int[] CreateIndexSet(int length)
