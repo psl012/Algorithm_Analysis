@@ -148,7 +148,38 @@ public class TestClass
         float minLength = tspFunction.BellmanHeldKarp(graph);
 
         // Assert
-        
+        Assert.Equal(10.24f, MathF.Round(minLength, 2));
 
+    }
+
+    [Fact]
+    public void Test_Case_02()
+    {
+        // Arrange
+        (float, float)[] cityMap = {(0f, 2.05f), (3.414213562373095f, 3.4642135623730947f), (0.5857864376269049f, 0.6357864376269047f), (0.5857864376269049f, 3.4642135623730947f), (2f,0f), (4.05f, 2.05f), (2f, 4.10f), (3.414213562373095f, 0.6357864376269047f)};
+        Graph graph = new Graph(cityMap);
+        TSPFunction tspFunction = new TSPFunction();
+
+        // Act
+        float minLength = tspFunction.BellmanHeldKarp(graph);
+
+        // Assert
+        Assert.Equal(12.36f, MathF.Round(minLength, 2));
+    }
+
+    [Fact]
+    public void Test_Case_03()
+    {
+        // Arrange 
+        (float, float)[] cityMap = {(0,0), (4,3), (4,0), (0,3)};
+        Graph graph = new Graph(cityMap);
+        TSPFunction tspFunction = new TSPFunction();
+
+        // Act
+        float minLength = tspFunction.BellmanHeldKarp(graph);
+
+        // Assert
+        Assert.Equal(14f, minLength);
+    
     }
 }

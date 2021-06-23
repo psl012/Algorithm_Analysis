@@ -21,22 +21,7 @@ namespace Week_15_Programming_Asssignment
 
             float test = tspFunction.BellmanHeldKarp(graph);
             Console.WriteLine(test);
-            /**
-            List<int?>[] powerSet = setFunctions.OrderedPowerSet(cityIndex);            
-            
-            List<int?>[] gg = setFunctions.RemoveNonBase(powerSet, 0);
-            setFunctions.PrintPowerSet(gg);
-
-            CityVertex vertex = new CityVertex(0, cityMap);
-
-            Console.WriteLine("==============");
-            Console.WriteLine(vertex._myCityCode);
-
-            foreach(KeyValuePair<int, float> entry in vertex._neighbor)
-            {
-                Console.WriteLine(entry.Value);
-            }
-*/
+       
             Console.ReadKey();
         }
     }
