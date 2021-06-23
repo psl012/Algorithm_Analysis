@@ -12,9 +12,16 @@ namespace Week_15_Programming_Asssignment
 
             SetFunctions setFunctions = new SetFunctions();
             QuickSort quickSort = new QuickSort();
-            (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
-            int[] cityIndex = {0,1,2,3};
+            (float, float)[] cityMap = {(0f, 2.05f), (3.414213562373095f, 3.4642135623730947f), (0.5857864376269049f, 0.6357864376269047f), (0.5857864376269049f, 3.4642135623730947f), (2f,0f), (4.05f, 2.05f), (2f, 4.10f), (3.414213562373095f, 0.6357864376269047f)};
+           // int[] cityIndex = {0,1,2,3};
 
+            Graph graph = new Graph(cityMap);
+
+            TSPFunction tspFunction = new TSPFunction();
+
+            float test = tspFunction.BellmanHeldKarp(graph);
+            Console.WriteLine(test);
+            /**
             List<int?>[] powerSet = setFunctions.OrderedPowerSet(cityIndex);            
             
             List<int?>[] gg = setFunctions.RemoveNonBase(powerSet, 0);
@@ -29,7 +36,7 @@ namespace Week_15_Programming_Asssignment
             {
                 Console.WriteLine(entry.Value);
             }
-
+*/
             Console.ReadKey();
         }
     }
@@ -68,7 +75,8 @@ namespace Week_15_Programming_Asssignment
 
                     // i is so that we are in the row with proper size 2 power set, j as i said is the destination
                     // cij means the c1j in the pseudocode: graph._vertices[0] is the default while 0 ia the source and j is the dest
-                    A[i, j] = graph._vertices[0]._neighbor[j];
+                    // j - 1 for the array because we always remove the source element which is zero
+                    A[i, j - 1] = graph._vertices[0]._neighbor[j];
                 } 
             }
 
@@ -113,7 +121,7 @@ namespace Week_15_Programming_Asssignment
                             //A[i,j] = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
 
                             // this is not finished we need to change this to get the minimum value for A[i,j] among the values of k in the iteration
-                            float minCandidate = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
+                            float minCandidate = A[ind, (int) k - 1] + graph._vertices[(int) k]._neighbor[j];
                             if(minCandidate < minDistance)
                             {
                                 minDistance = minCandidate;
@@ -123,7 +131,7 @@ namespace Week_15_Programming_Asssignment
                         }
                     }
                 
-                A[i,j]   = A[br_winner, k_index] + graph._vertices[k_index]._neighbor[j];
+                A[i,j - 1]   = A[br_winner, k_index - 1] + graph._vertices[k_index]._neighbor[j];
                 }
 
             }   
@@ -133,7 +141,7 @@ namespace Week_15_Programming_Asssignment
             float superMinCandidate;
             for(int fj = 1; fj < n; fj++)
             {
-                superMinCandidate = A[V_index, fj] + graph._vertices[fj]._neighbor[0];
+                superMinCandidate = A[V_index, fj - 1] + graph._vertices[fj]._neighbor[0];
 
                 if(superMinCandidate < superMinDistance)
                 {

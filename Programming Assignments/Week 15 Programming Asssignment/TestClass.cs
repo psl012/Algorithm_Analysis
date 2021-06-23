@@ -28,7 +28,7 @@ public class TestClass
     }
 
     [Fact]
-    public void Test_Case1_City0()
+    public void Test_Case_PowerSet1_City0()
     {
         // Arrange
         SetFunctions setFunctions = new SetFunctions();
@@ -55,7 +55,7 @@ public class TestClass
     }
 
     [Fact]
-    public void Test_Case1_City1()
+    public void Test_Case_PowerSet2_City1()
     {
         // Arrange
         SetFunctions setFunctions = new SetFunctions();
@@ -82,7 +82,7 @@ public class TestClass
     }
 
     [Fact]
-    public void Test_Case1_City2()
+    public void Test_Case_PowerSet3_City2()
     {
         // Arrange
         SetFunctions setFunctions = new SetFunctions();
@@ -134,5 +134,21 @@ public class TestClass
         Assert.Equal(4.2426f, MathF.Round(graph._vertices[2]._neighbor[0], 4));
         Assert.Equal(3, graph._vertices[2]._neighbor[1]);
         Assert.Equal(0, graph._vertices[2]._neighbor[2]);  
+    }
+
+    [Fact]
+    public void Test_Case_01()
+    {
+        // Arrange
+        (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
+        Graph graph = new Graph(cityMap);
+        TSPFunction tspFunction = new TSPFunction();
+    
+        // Act
+        float minLength = tspFunction.BellmanHeldKarp(graph);
+
+        // Assert
+        
+
     }
 }
