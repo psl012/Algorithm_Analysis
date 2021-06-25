@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Week_15_Programming_Asssignment
 {
@@ -11,24 +12,52 @@ namespace Week_15_Programming_Asssignment
             Console.WriteLine("Hello World!");
 
             SetFunctions setFunctions = new SetFunctions();
+            TSPFunction tspFunctions = new TSPFunction();
             QuickSort quickSort = new QuickSort();
-            (float, float)[] cityMap = {(0f, 2.05f), (3.414213562373095f, 3.4642135623730947f), (0.5857864376269049f, 0.6357864376269047f), (0.5857864376269049f, 3.4642135623730947f), (2f,0f), (4.05f, 2.05f), (2f, 4.10f), (3.414213562373095f, 0.6357864376269047f)};
-           // int[] cityIndex = {0,1,2,3};
+            FileReader fileReader = new FileReader();
+            (double, double)[] cityMap = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15 Programming Asssignment\TestCases\Test_Case_04.txt");
 
+            int[] test = tspFunctions.CreateIndexSet(cityMap.Length);
+            List<int?>[] ff = setFunctions.OrderedPowerSet(test);
+
+            Console.WriteLine("Finish");
+          //  setFunctions.PrintPowerSet(ff);
+
+            /**
             Graph graph = new Graph(cityMap);
-
+        
             TSPFunction tspFunction = new TSPFunction();
 
-            float test = tspFunction.BellmanHeldKarp(graph);
+            double test = tspFunction.BellmanHeldKarp(graph);
             Console.WriteLine(test);
-       
+            */
             Console.ReadKey();
         }
     }
 
+    class FileReader
+    {
+        public (double, double)[] ReadFile(string dir)
+        {
+            string[] lines = File.ReadAllLines(dir);
+            (double, double)[] cityMap = new (double, double)[lines.Length - 1];
+
+            for(int i = 1; i < lines.Length; i++)
+            {
+                string[] line_part = lines[i].Split(" ");
+                cityMap[i - 1] = (Convert.ToDouble(line_part[0]), Convert.ToDouble(line_part[1]));
+            }
+
+            return cityMap;
+        }
+        
+        //string[] lines = File.ReadAllLines(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15 Programming Asssignment\TestCases\Test_Case_01.txt");
+
+    }
+
     class TSPFunction
     {
-        public float BellmanHeldKarp(Graph graph)
+        public double BellmanHeldKarp(Graph graph)
         {
             SetFunctions setFunctions = new SetFunctions();
             int[] index = CreateIndexSet(graph._vertices.Length);
@@ -41,7 +70,7 @@ namespace Week_15_Programming_Asssignment
             int bar = 0;
 
             // Initialize the A to the size of the column (length of the powerset) and size of the row (length of the destination)
-            float[,] A = new float[powerSetInd.Length, n - 1];
+            double[,] A = new double[powerSetInd.Length, n - 1];
 
             // base Case |S| = 2
             for(int i = 0; i < powerSetInd.Length; i++)
@@ -85,7 +114,7 @@ namespace Week_15_Programming_Asssignment
                     // The index we want from S
                     int k_index = 0;
                     // The winning distance
-                    float minDistance = 9999999;
+                    double minDistance = 9999999;
 
                     // the winning BellmanRecurrence Index
                     int br_winner = 0;
@@ -106,7 +135,7 @@ namespace Week_15_Programming_Asssignment
                             //A[i,j] = A[ind, (int) k] + graph._vertices[(int) k]._neighbor[j];
 
                             // this is not finished we need to change this to get the minimum value for A[i,j] among the values of k in the iteration
-                            float minCandidate = A[ind, (int) k - 1] + graph._vertices[(int) k]._neighbor[j];
+                            double minCandidate = A[ind, (int) k - 1] + graph._vertices[(int) k]._neighbor[j];
                             if(minCandidate < minDistance)
                             {
                                 minDistance = minCandidate;
@@ -122,8 +151,8 @@ namespace Week_15_Programming_Asssignment
             }   
              // From destination 1 to n-1 we need to see which has the minimum using the largest subset V
             int V_index = powerSetInd.Length - 1;
-            float superMinDistance = 9999999;
-            float superMinCandidate;
+            double superMinDistance = 9999999;
+            double superMinCandidate;
             for(int fj = 1; fj < n; fj++)
             {
                 superMinCandidate = A[V_index, fj - 1] + graph._vertices[fj]._neighbor[0];
@@ -165,7 +194,7 @@ namespace Week_15_Programming_Asssignment
 
         }
 
-        int[] CreateIndexSet(int length)
+        public int[] CreateIndexSet(int length)
         {
             int[] indices = new int[length];
             for(int i = 0; i < length; i++)
@@ -180,9 +209,9 @@ namespace Week_15_Programming_Asssignment
     class Graph
     {
         public CityVertex[] _vertices;
-        (float, float)[] _cityMap;
+        (double, double)[] _cityMap;
         
-        public Graph((float, float)[] cityMap)
+        public Graph((double, double)[] cityMap)
         {
             _vertices = new CityVertex[cityMap.Length];
             _cityMap = cityMap;
@@ -196,27 +225,27 @@ namespace Week_15_Programming_Asssignment
     
     class CityVertex
     {
-        public Dictionary<int, float>  _neighbor {get; private set;} = new Dictionary<int, float>();
+        public Dictionary<int, double>  _neighbor {get; private set;} = new Dictionary<int, double>();
         public int _myCityCode;
         
-        (float, float)[] _cityMap;
+        (double, double)[] _cityMap;
 
-        public CityVertex(int cityCode, (float, float)[] cityMap)
+        public CityVertex(int cityCode, (double, double)[] cityMap)
         {
             _myCityCode = cityCode;
             _cityMap = cityMap;
 
             int n = cityMap.Length;
-            (float, float) myCity = _cityMap[_myCityCode];
+            (double, double) myCity = _cityMap[_myCityCode];
 
             for(int i = 0; i < n; i++)
             {
             
-                (float, float) neightborCity = _cityMap[i];
-                float xSqrDistance = MathF.Pow((myCity.Item1 - neightborCity.Item1), 2);
-                float ySqrDistance = MathF.Pow((myCity.Item2 - neightborCity.Item2), 2);
+                (double, double) neightborCity = _cityMap[i];
+                double xSqrDistance = Math.Pow((myCity.Item1 - neightborCity.Item1), 2);
+                double ySqrDistance = Math.Pow((myCity.Item2 - neightborCity.Item2), 2);
                 
-                float neighborDistance = MathF.Sqrt(xSqrDistance + ySqrDistance);
+                double neighborDistance = Math.Sqrt(xSqrDistance + ySqrDistance);
 
                 _neighbor.Add(i, neighborDistance);            
             }

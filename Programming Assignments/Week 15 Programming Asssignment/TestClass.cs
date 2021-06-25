@@ -33,7 +33,7 @@ public class TestClass
         // Arrange
         SetFunctions setFunctions = new SetFunctions();
         QuickSort quickSort = new QuickSort();
-        (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
+        (double, double)[] cityMap = {(0,0), (0,3), (3,3)};
         int[] cityIndex = {0,1,2};
 
         List<int?>[] powerSet = setFunctions.OrderedPowerSet(cityIndex);
@@ -43,7 +43,7 @@ public class TestClass
 
         // Assert
         int i = 0;
-        foreach(KeyValuePair<int, float> entry in vertex._neighbor)
+        foreach(KeyValuePair<int, double> entry in vertex._neighbor)
         {
             Assert.Equal(i, entry.Key);
             i++;
@@ -51,7 +51,7 @@ public class TestClass
 
         Assert.Equal(0, vertex._neighbor[0]);
         Assert.Equal(3, vertex._neighbor[1]);
-        Assert.Equal(4.2426f, MathF.Round(vertex._neighbor[2], 4));
+        Assert.Equal(4.2426, Math.Round(vertex._neighbor[2], 4));
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public class TestClass
         // Arrange
         SetFunctions setFunctions = new SetFunctions();
         QuickSort quickSort = new QuickSort();
-        (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
+        (double, double)[] cityMap = {(0,0), (0,3), (3,3)};
         int[] cityIndex = {0,1,2};
 
         List<int?>[] powerSet = setFunctions.OrderedPowerSet(cityIndex);
@@ -70,7 +70,7 @@ public class TestClass
 
         // Assert
         int i = 0;
-        foreach(KeyValuePair<int, float> entry in vertex._neighbor)
+        foreach(KeyValuePair<int, double> entry in vertex._neighbor)
         {
             Assert.Equal(i, entry.Key);
             i++;
@@ -87,7 +87,7 @@ public class TestClass
         // Arrange
         SetFunctions setFunctions = new SetFunctions();
         QuickSort quickSort = new QuickSort();
-        (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
+        (double, double)[] cityMap = {(0,0), (0,3), (3,3)};
         int[] cityIndex = {0,1,2};
 
         List<int?>[] powerSet = setFunctions.OrderedPowerSet(cityIndex);
@@ -97,13 +97,12 @@ public class TestClass
 
         // Assert
         int i = 0;
-        foreach(KeyValuePair<int, float> entry in vertex._neighbor)
+        foreach(KeyValuePair<int, double> entry in vertex._neighbor)
         {
             Assert.Equal(i, entry.Key);
             i++;
         }
-
-        Assert.Equal(4.2426f, MathF.Round(vertex._neighbor[0], 4));
+        Assert.Equal(4.2426, Math.Round(vertex._neighbor[0], 4));
         Assert.Equal(3, vertex._neighbor[1]);
         Assert.Equal(0, vertex._neighbor[2]);        
     }
@@ -112,7 +111,7 @@ public class TestClass
     public void Test_Case_Graph()
     {
         // Arrange
-        (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
+        (double, double)[] cityMap = {(0,0), (0,3), (3,3)};
 
         // Act
         Graph graph = new Graph(cityMap);
@@ -125,13 +124,13 @@ public class TestClass
 
         Assert.Equal(0, graph._vertices[0]._neighbor[0]);
         Assert.Equal(3, graph._vertices[0]._neighbor[1]);
-        Assert.Equal(4.2426f, MathF.Round(graph._vertices[0]._neighbor[2], 4));
+        Assert.Equal(4.2426, Math.Round(graph._vertices[0]._neighbor[2], 4));
 
         Assert.Equal(3, graph._vertices[1]._neighbor[0]);
         Assert.Equal(0, graph._vertices[1]._neighbor[1]);
         Assert.Equal(3, graph._vertices[1]._neighbor[2]);   
 
-        Assert.Equal(4.2426f, MathF.Round(graph._vertices[2]._neighbor[0], 4));
+        Assert.Equal(4.2426, Math.Round(graph._vertices[2]._neighbor[0], 4));
         Assert.Equal(3, graph._vertices[2]._neighbor[1]);
         Assert.Equal(0, graph._vertices[2]._neighbor[2]);  
     }
@@ -140,15 +139,16 @@ public class TestClass
     public void Test_Case_01()
     {
         // Arrange
-        (float, float)[] cityMap = {(0,0), (0,3), (3,3)};
+        FileReader filereader = new FileReader();
+        (double, double)[] cityMap = filereader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15 Programming Asssignment\TestCases\Test_Case_01.txt");
         Graph graph = new Graph(cityMap);
         TSPFunction tspFunction = new TSPFunction();
     
         // Act
-        float minLength = tspFunction.BellmanHeldKarp(graph);
+        double minLength = tspFunction.BellmanHeldKarp(graph);
 
         // Assert
-        Assert.Equal(10.24f, MathF.Round(minLength, 2));
+        Assert.Equal(10.24, Math.Round(minLength, 2));
 
     }
 
@@ -156,30 +156,33 @@ public class TestClass
     public void Test_Case_02()
     {
         // Arrange
-        (float, float)[] cityMap = {(0f, 2.05f), (3.414213562373095f, 3.4642135623730947f), (0.5857864376269049f, 0.6357864376269047f), (0.5857864376269049f, 3.4642135623730947f), (2f,0f), (4.05f, 2.05f), (2f, 4.10f), (3.414213562373095f, 0.6357864376269047f)};
+        FileReader filereader = new FileReader();
+        (double, double)[] cityMap = filereader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15 Programming Asssignment\TestCases\Test_Case_02.txt");
+
         Graph graph = new Graph(cityMap);
         TSPFunction tspFunction = new TSPFunction();
 
         // Act
-        float minLength = tspFunction.BellmanHeldKarp(graph);
+        double minLength = tspFunction.BellmanHeldKarp(graph);
 
         // Assert
-        Assert.Equal(12.36f, MathF.Round(minLength, 2));
+        Assert.Equal(12.36, Math.Round(minLength, 2));
     }
 
     [Fact]
     public void Test_Case_03()
     {
         // Arrange 
-        (float, float)[] cityMap = {(0,0), (4,3), (4,0), (0,3)};
+        FileReader filereader = new FileReader();
+        (double, double)[] cityMap = filereader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15 Programming Asssignment\TestCases\Test_Case_03.txt");
+
         Graph graph = new Graph(cityMap);
         TSPFunction tspFunction = new TSPFunction();
 
         // Act
-        float minLength = tspFunction.BellmanHeldKarp(graph);
+        double minLength = tspFunction.BellmanHeldKarp(graph);
 
         // Assert
-        Assert.Equal(14f, minLength);
-    
+        Assert.Equal(14, minLength);
     }
 }
