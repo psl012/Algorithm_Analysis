@@ -14,41 +14,126 @@ namespace Week_15b_Programming_Assignment
             Console.WriteLine("Hello World!");
             
             FileReader fileReader = new FileReader();
-        
+            TSPFunctions tSPFunctions = new TSPFunctions();
+  
             // Act
-            (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_02.txt");
-            Graph graph = new Graph(cities);
-            Dictionary<string, double> test = new Dictionary<string, double>();
-            test.Add("zero", 100);
-            test.Add("uno", 99);
-            test.Add("dos", 98);
+            (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_03.txt");
+            (double, double)[] answer = tSPFunctions.TrickHeuristicTSP(cities);   
 
-            var mySortedDictionary = test.OrderBy(d => d.Value);
+            foreach(int ii in tSPFunctions.indexRef)
+            {
+                Console.WriteLine(ii);   
+            }
+            Console.WriteLine("====");
+            Console.WriteLine(tSPFunctions.indexRef.Length);
 
-            
-
+            double trueAnswer = tSPFunctions.EucledianCompute(answer);    
+            Console.WriteLine("GG:" + trueAnswer);
             Console.ReadKey();
         }
     }
 
     class TSPFunctions
     {
-        public double HeuristicTSP(CityVertex sourceCity)
+        public int[] indexRef;
+
+        public (double, double)[] TrickHeuristicTSP((double, double)[] cityMap)
         {
-            // Initialization
-            // list of visited cities (Dictionary for O(1) time using contains) dictionary is faster as internet stated
+            // Initialize 
+            Dictionary<int, (double, double)> unvisitedCities = GetDictFromCityMap(cityMap);
+            (double, double)[] visitedCities = new (double, double)[cityMap.Length];
 
-            // Start at the first city
+            (double, double) start = cityMap[0];
+            (double, double) head = start;
+            (double, double) minCandidate = start;
+            visitedCities[0] = head;
+            unvisitedCities.Remove(0);
 
-            // Scan the neighbor get the one with the min value  and go that city
-                // - needs an sorted dictionary with the distance as parameter we can bypass this using sorted List i already got this in my head so just rethink it
-                    // keep iterating if the object in the list is already in the travelled dictionary
-                    // if the iteration reached the end then all vertices is travelled go back to the source
+            double delta_x;   
+            int minCandidateKey = 0;
+            int visitIndex = 1;
+            
+            int n = cityMap.Length;
+            indexRef = new int[n];
+            indexRef[0] = 0;
 
+            for(int i = 1; i < n; i++)
+            {
+                double currentMinDistance = 9999999999999999999;
+                foreach(KeyValuePair<int, (double, double)> entry in unvisitedCities)
+                {
+                    // delta_x is the x distance between the unvisited x-coord and the current head x-coord
+                    delta_x = Math.Abs(entry.Value.Item1 - head.Item1);
+                    if(delta_x < currentMinDistance)
+                    {
+                        minCandidate = entry.Value;
+                        minCandidateKey = entry.Key;
+                        currentMinDistance = SquaredEucledianSimple(head, entry.Value);
+                    }
 
+                    else
+                    {
+                        break;
+                    }
+                }
+            
+                // Winner gets stored in the winner array
+                visitedCities[visitIndex] = minCandidate;
+                indexRef[visitIndex] = minCandidateKey;
+                head = minCandidate;
+                visitIndex += 1;
 
-            return 0;
+                // Update tables   
+                unvisitedCities.Remove(minCandidateKey);
+            }
+            return visitedCities;
         }
+
+        public Dictionary<int, (double, double)> GetDictFromCityMap((double, double)[] cityMap)
+        {
+            Dictionary<int, (double, double)> dictCityMap = new Dictionary<int, (double, double)>();
+            for(int i = 0; i < cityMap.Length; i++)
+            {
+                dictCityMap.Add(i, cityMap[i]);
+            }
+
+            return dictCityMap;
+        }
+
+        double SquaredEucledianSimple((double, double) a, (double, double) b)
+        {
+                double xSqrDistance = Math.Pow((b.Item1 - a.Item1), 2);
+                double ySqrDistance = Math.Pow((b.Item2 - a.Item2), 2);
+
+                return Math.Sqrt(xSqrDistance + ySqrDistance);
+        }
+
+        public double EucledianCompute((double, double)[] tspPath)
+        {        
+            double TSPDistance = 0;
+            double neighborDistance;
+            double xSqrDistance;
+            double ySqrDistance;
+            for(int i = 1; i < tspPath.Length; i++)
+            {
+                xSqrDistance = Math.Pow((tspPath[i].Item1 - tspPath[i-1].Item1), 2);
+                ySqrDistance = Math.Pow((tspPath[i].Item2 - tspPath[i-1].Item2), 2);
+                
+                neighborDistance = Math.Sqrt(xSqrDistance + ySqrDistance);    
+                TSPDistance += neighborDistance; 
+     
+            }
+
+            xSqrDistance = Math.Pow((tspPath[tspPath.Length - 1 ].Item1 - tspPath[0].Item1), 2);
+            ySqrDistance = Math.Pow((tspPath[tspPath.Length - 1].Item2 - tspPath[0].Item2), 2);
+                
+            neighborDistance = Math.Sqrt(xSqrDistance + ySqrDistance);    
+            TSPDistance += neighborDistance; 
+      
+            
+            return TSPDistance;
+        }
+
     }
 
     class FileReader
@@ -61,7 +146,7 @@ namespace Week_15b_Programming_Assignment
             for(int i = 1; i < lines.Length; i++)
             {
                 string[] line_part = lines[i].Split(" ");
-                cityMap[i - 1] = (Convert.ToDouble(line_part[0]), Convert.ToDouble(line_part[1]));
+                cityMap[i - 1] = (Convert.ToDouble(line_part[1]), Convert.ToDouble(line_part[2]));
             }
 
             return cityMap;
@@ -85,9 +170,23 @@ namespace Week_15b_Programming_Assignment
         }
     }
 
+    
+    class SimpleCityVertex
+    {
+        public (double, double) _address;
+        
+
+        public SimpleCityVertex((double, double) address)
+        {
+            _address = address;
+        }
+    }
+
     class CityVertex
     {
         public Dictionary<int, double>  _neighbor {get; private set;} = new Dictionary<int, double>();
+        public KeyValuePair<int, double>[] _sortedNeighbors;
+
         public int _myCityCode;
         
         (double, double)[] _cityMap;
@@ -111,6 +210,8 @@ namespace Week_15b_Programming_Assignment
 
                 _neighbor.Add(i, neighborDistance);            
             }
+
+            _sortedNeighbors = _neighbor.OrderBy(d => d.Value).ToArray();
         }
     }
 
