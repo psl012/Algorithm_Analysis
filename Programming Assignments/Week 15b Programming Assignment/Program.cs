@@ -15,18 +15,17 @@ namespace Week_15b_Programming_Assignment
             
             FileReader fileReader = new FileReader();
             TSPFunctions tSPFunctions = new TSPFunctions();
-  
             // Act
-            (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_03.txt");
+            (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_nn.txt");
             (double, double)[] answer = tSPFunctions.TrickHeuristicTSP(cities);   
-
+/**
             foreach(int ii in tSPFunctions.indexRef)
             {
                 Console.WriteLine(ii);   
             }
             Console.WriteLine("====");
             Console.WriteLine(tSPFunctions.indexRef.Length);
-
+*/
             double trueAnswer = tSPFunctions.EucledianCompute(answer);    
             Console.WriteLine("GG:" + trueAnswer);
             Console.ReadKey();
@@ -60,19 +59,26 @@ namespace Week_15b_Programming_Assignment
             for(int i = 1; i < n; i++)
             {
                 double currentMinDistance = 9999999999999999999;
+                      //              Console.WriteLine("head: " + head);
                 foreach(KeyValuePair<int, (double, double)> entry in unvisitedCities)
                 {
                     // delta_x is the x distance between the unvisited x-coord and the current head x-coord
-                    delta_x = Math.Abs(entry.Value.Item1 - head.Item1);
-                    if(delta_x < currentMinDistance)
+                    delta_x = Math.Abs(head.Item1 - entry.Value.Item1);
+                    if(delta_x <= currentMinDistance)
                     {
-                        minCandidate = entry.Value;
-                        minCandidateKey = entry.Key;
-                        currentMinDistance = SquaredEucledianSimple(head, entry.Value);
+                        double minDistanceCandiate = SquaredEucledianSimple(head, entry.Value);
+                        if(minDistanceCandiate < currentMinDistance)
+                        {
+                            minCandidate = entry.Value;
+                            minCandidateKey = entry.Key;
+                            currentMinDistance = minDistanceCandiate;
+                        }                        
+                 //       Console.WriteLine("entry: " + entry + " distance: " + currentMinDistance + " Delta x: " + delta_x);
                     }
 
                     else
                     {
+                    //    Console.WriteLine("entry: " + entry + " distance: " + currentMinDistance + " Delta x: " + delta_x);
                         break;
                     }
                 }

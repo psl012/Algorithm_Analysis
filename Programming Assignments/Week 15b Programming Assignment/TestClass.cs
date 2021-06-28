@@ -58,6 +58,90 @@ public class TestClass
         Assert.Equal((3,3), dictAnswer[2]);
         Assert.Equal(3, dictAnswer.Count);
     }
+    
+    [Fact]
+    public void Test_Case_m01()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        TSPFunctions tspFunction = new TSPFunctions();
 
+        (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_m01.txt");
+
+        // Act
+        (double, double)[] answer = tspFunction.TrickHeuristicTSP(cities);
+        double trueAnswer = tspFunction.EucledianCompute(answer);
+
+        // Assert
+        Assert.Equal(0, Math.Round(trueAnswer));
+    }
+
+    [Fact]
+    public void Test_Case_m02()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        TSPFunctions tspFunction = new TSPFunctions();
+
+        (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_m02.txt");
+
+        // Act
+        (double, double)[] answer = tspFunction.TrickHeuristicTSP(cities);
+        double trueAnswer = tspFunction.EucledianCompute(answer);
+
+        // Assert
+        Assert.Equal(2, Math.Round(trueAnswer));
+    }
+
+    [Fact]
+    public void Test_Case_m03b()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        TSPFunctions tspFunction = new TSPFunctions();
+
+        (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_m03b.txt");
+
+        // Act
+        (double, double)[] answer = tspFunction.TrickHeuristicTSP(cities);
+        double trueAnswer = tspFunction.EucledianCompute(answer);
+
+        // Assert
+        Assert.Equal(5, Math.Round(trueAnswer));
+    }
+
+    [Fact]
+    public void Test_Case_m04()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        TSPFunctions tspFunction = new TSPFunctions();
+
+        (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_m04.txt");
+
+        // Act
+        (double, double)[] answer = tspFunction.TrickHeuristicTSP(cities);
+        double trueAnswer = tspFunction.EucledianCompute(answer);
+
+        // Assert
+        Assert.Equal(11, Math.Round(trueAnswer));
+    }
+
+        [Fact]
+    public void Test_Case_01()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        TSPFunctions tspFunction = new TSPFunctions();
+
+        (double, double)[] cities = fileReader.ReadFile(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 15b Programming Assignment\TestCases\Test_Case_01b.txt");
+
+        // Act
+        (double, double)[] answer = tspFunction.TrickHeuristicTSP(cities);
+        double trueAnswer = tspFunction.EucledianCompute(answer);
+
+        // Assert
+        Assert.Equal(23, Math.Round(trueAnswer));
+    }
 
 }
