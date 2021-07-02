@@ -10,7 +10,7 @@ namespace Week_16_Programming_Assignment
         static void Main(string[] args)
         {
             FileReader fileReader = new FileReader();
-            (int, int)[] test = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Real_Case_01.txt");
+            (TruthValue, TruthValue)[] test = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Real_Case_01.txt");
 
             Console.WriteLine("Hello World!");
             Console.ReadKey();
@@ -19,10 +19,10 @@ namespace Week_16_Programming_Assignment
 
     class FileReader
     {
-        public (int, int)[] Scan(string dir)
+        public (TruthValue, TruthValue)[] Scan(string dir)
         {
             string[] lines = File.ReadAllLines(dir);
-            (int, int)[] numTable = new (int, int)[lines.Length - 1];
+            (TruthValue, TruthValue)[] numTable = new (TruthValue, TruthValue)[lines.Length - 1];
 
             for(int i = 1; i < lines.Length; i++)
             {
@@ -30,7 +30,7 @@ namespace Week_16_Programming_Assignment
                 int x = Convert.ToInt32(literalString[0]);
                 int y = Convert.ToInt32(literalString[1]);
 
-                numTable[i-1] = (x,y);
+                numTable[i-1] = (new TruthValue(x, false), new TruthValue(y, false));
             }
 
             return numTable;
@@ -39,40 +39,41 @@ namespace Week_16_Programming_Assignment
 
     class SAT_2Solver
     {
-        public void PapaDimitrious((int, int)[] numTable)
+        public Dictionary<(int, int), bool> _literalList {get; private set;}
+        public Dictionary<int, int> _positiveID_Dict {get; private set;}
+        public Dictionary<int, int> _negativeID_Dict  {get; private set;}
+
+        public void PapaDimitrious((TruthValue, TruthValue)[] truthTable)
         {
             // Make a masterlist of Literals
-            Dictionary<(int, int), bool> LiteralList = new Dictionary<(int, int), bool>();
+            _literalList = new Dictionary<(int, int), bool>();
 
             // Make a Dictionary of only positive literals 
-            Dictionary<int, TruthValue> postiveDict = new Dictionary<int, TruthValue>();
+            _positiveID_Dict = new Dictionary<int, int>();
 
             // Make a Dictionary of only negative literals
-            Dictionary<int, TruthValue> negativeDict = new Dictionary<int, TruthValue>();
+            _negativeID_Dict = new Dictionary<int, int>();
 
             // Check negaFunction
             void CheckNumberSignAndStore(int num)
             {
-                if(num < 0 && !negativeDict.ContainsKey(num)) negativeDict.Add(num, num);  
-                else if(num >= 0 && !postiveDict.ContainsKey(num)) postiveDict.Add(num, num);  
+                if(num < 0 && !_negativeID_Dict.ContainsKey(num)) _negativeID_Dict.Add(num, num);  
+                else if(num >= 0 && !_positiveID_Dict.ContainsKey(num)) _positiveID_Dict.Add(num, num);  
             }
 
-            foreach((int, int) num in numTable)
+            foreach((TruthValue, TruthValue) truthValue in truthTable)
             {
-                CheckNumberSignAndStore(num.Item1);
-                CheckNumberSignAndStore(num.Item2);
+                CheckNumberSignAndStore(truthValue.Item1._ID);
+                CheckNumberSignAndStore(truthValue.Item2._ID);
+                
+                _literalList.Add((truthValue.Item1._ID, truthValue.Item2._ID), false);
             }
 
             // Iterate through all the positive literals
-            foreach(KeyValuePair<int, int> num)
+            
                 // randomly assign a bool value to the masterlist of Literals // for now make every literal initialized with true value
                 // check if it has a negative literal
                     // - assign the opposite bool value from the positive literal in the masterlist of literals
-
-                        
-            
-            Dictionary<int, bool> literalTable = new Dictionary<int, bool>();
-
         }
     }
 
@@ -89,4 +90,5 @@ namespace Week_16_Programming_Assignment
         }        
 
     }
+    
 }
