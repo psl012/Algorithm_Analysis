@@ -63,7 +63,6 @@ namespace Week_16_Programming_Assignment
                     return item;
                 }
             }
-
             return truthTable;
         }
     }
@@ -75,11 +74,49 @@ namespace Week_16_Programming_Assignment
 
         public void PapaDimitrious((TruthValue, TruthValue)[] truthTable)
         {
+        // Initialization-----------------------------------------------------------------------------
             // Make a Dictionary of only positive literals 
             _positiveID_Dict = new Dictionary<int, TruthValue>();
 
             // Make a Dictionary of only negative literals
             _negativeID_Dict = new Dictionary<int, TruthValue>();
+
+            // Random number makeer of TruthValue Initializer
+            Random randomNumber = new Random();
+
+            foreach((TruthValue, TruthValue) truthValue in truthTable)
+            {
+                CheckNumberSignAndStore(truthValue.Item1);
+                CheckNumberSignAndStore(truthValue.Item2);
+            }
+            Initialize_TruthValues();
+        // End of Initialization-----------------------------------------------------------------
+
+
+            // internal functions---------------------------------------------------------------------------------------
+            // Initializaztion
+            void Initialize_TruthValues()
+            {
+                // Iterate through all the positive literals
+                foreach(KeyValuePair<int, TruthValue> tValue in _positiveID_Dict)
+                {
+                    // Reference for negative check
+                    int truthValueID = tValue.Key;
+
+                    // Truth Value of RandomTruth
+                    bool myRandomTruth = GiveRandomTruth();
+
+                    // randomly assign a bool value to the masterlist of Literals // for now make every literal initialized with true value
+                    tValue.Value._value = myRandomTruth;
+                    
+                    // check if it has a negative literal
+                    if(_negativeID_Dict.ContainsKey(-truthValueID))
+                    {
+                        // - assign the opposite bool value from the positive literal in the masterlist of literals 
+                        _negativeID_Dict[-truthValueID]._value = !myRandomTruth;
+                    }
+                }
+            }
 
             // Check negaFunction
             void CheckNumberSignAndStore(TruthValue truthValue)
@@ -89,38 +126,6 @@ namespace Week_16_Programming_Assignment
                 else if(num >= 0 && !_positiveID_Dict.ContainsKey(num)) _positiveID_Dict.Add(num, truthValue);  
             }
 
-            // Random number makeer of TruthValue Initializer (Put this inside the function at final)
-            Random randomNumber = new Random(2);
-
-
-            foreach((TruthValue, TruthValue) truthValue in truthTable)
-            {
-                CheckNumberSignAndStore(truthValue.Item1);
-                CheckNumberSignAndStore(truthValue.Item2);
-            }
-
-            // Iterate through all the positive literals
-            foreach(KeyValuePair<int, TruthValue> tValue in _positiveID_Dict)
-            {
-                // Reference for negative check
-                int truthValueID = tValue.Key;
-
-                // Truth Value of RandomTruth
-                bool myRandomTruth = GiveRandomTruth();
-
-                // randomly assign a bool value to the masterlist of Literals // for now make every literal initialized with true value
-                tValue.Value._value = myRandomTruth;
-                
-                // check if it has a negative literal
-                if(_negativeID_Dict.ContainsKey(-truthValueID))
-                {
-                    // - assign the opposite bool value from the positive literal in the masterlist of literals 
-                    _negativeID_Dict[-truthValueID]._value = !myRandomTruth;
-                }
-
-            }
-
-            // internal functions
             bool GiveRandomTruth()
             {
                 int rNumber = randomNumber.Next(0,2);
