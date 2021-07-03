@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj": {}
+    "C:\\Users\\lacap\\Desktop\\Paul\\Cloud Folders Git\\Algorithm Analysis\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj": {
+    "C:\\Users\\lacap\\Desktop\\Paul\\Cloud Folders Git\\Algorithm Analysis\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj",
+        "projectUniqueName": "C:\\Users\\lacap\\Desktop\\Paul\\Cloud Folders Git\\Algorithm Analysis\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj",
         "projectName": "Week 16 Programming Assignment",
-        "projectPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj",
-        "packagesPath": "C:\\Users\\Paul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Paul\\Documents\\Open Source Society for Computer Science (OSSU)\\Algorithms Coursera\\Programming Assignments\\Week 16 Programming Assignment\\obj\\",
+        "projectPath": "C:\\Users\\lacap\\Desktop\\Paul\\Cloud Folders Git\\Algorithm Analysis\\Programming Assignments\\Week 16 Programming Assignment\\Week 16 Programming Assignment.csproj",
+        "packagesPath": "C:\\Users\\lacap\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lacap\\Desktop\\Paul\\Cloud Folders Git\\Algorithm Analysis\\Programming Assignments\\Week 16 Programming Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Paul\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\lacap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
