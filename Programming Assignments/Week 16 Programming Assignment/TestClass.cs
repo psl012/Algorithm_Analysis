@@ -93,5 +93,37 @@ public class TestClass
         Assert.Equal(-5, sat_2Solver._negativeID_Dict[-5]._ID);             
         Assert.Equal(1, fix);
     }
+
+    [Fact]
+    public void PapaDimitrious_Test_Case_01_True()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        SAT_2Solver sat_2Solver = new SAT_2Solver();    
+        //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_02_True.txt");
+        (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_02_True.txt");
+        
+        // Act
+        bool myAnswer = sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
+
+        // Assert
+        Assert.True(myAnswer);
+    }
     
+
+        [Fact]
+        public void PapaDimitrious_Test_Case_02_False()
+        {
+            // Arrange
+            FileReader fileReader = new FileReader();
+            SAT_2Solver sat_2Solver = new SAT_2Solver();    
+            //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
+            (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
+            
+            // Act
+            bool myAnswer = sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
+
+            // Assert
+            Assert.False(myAnswer);
+        }
 }

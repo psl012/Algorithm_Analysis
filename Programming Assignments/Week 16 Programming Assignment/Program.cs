@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Week_16_Programming_Assignment
 {
@@ -12,13 +13,7 @@ namespace Week_16_Programming_Assignment
             FileReader fileReader = new FileReader();
             SAT_2Solver sat = new SAT_2Solver();
             
-
-            // truthTable  = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Real_Case_01.txt");
-
-            // true 
-            (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_02_True.txt");
-           // (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
-
+            (TruthValue, TruthValue)[] truthTable = fileReader.Scan("Test Cases/Test_Case_02_True.txt");
 
             bool finalAnswer = sat.PapaDimitrious(truthTable, fileReader.truthDictionary);
 
@@ -91,7 +86,7 @@ namespace Week_16_Programming_Assignment
             Random randomNumber = new Random(2);
 
             int tableLength = truthTable.Length;
-            int n = 2*truthTable.Length;
+            int n = truthDictionary.Count;
             int outerLoopLimit = (int) Math.Log2(n);
             int innerLoopLimit = (int) 2*n*n;
 
@@ -116,35 +111,15 @@ namespace Week_16_Programming_Assignment
                     {
                         int randomIndex = randomNumber.Next(0, tableLength);
 
-                        if(truthTable[randomIndex].Item1._value || truthTable[randomIndex].Item2._value)
+                        if(!(truthTable[randomIndex].Item1._value || truthTable[randomIndex].Item2._value))
                         {
-                            bool doNothing = true;
-                        }
-                        else
-                        {
-                            int randomItem = randomNumber.Next(0, 2);
-
-                            if(randomItem == 0)
+                            if(randomNumber.Next(0, 2) == 0)
                             {
-                                TruthValue currentTruth = truthTable[randomIndex].Item1;
-                                currentTruth._value = !truthTable[randomIndex].Item1._value;
-                                int negativeID = -currentTruth._ID;
-
-                                if(truthDictionary.ContainsKey(negativeID))
-                                {
-                                    truthDictionary[negativeID]._value = !currentTruth._value;
-                                }
+                                FlipTruthValue(truthTable[randomIndex].Item1);
                             }
                             else
-                            {                                
-                                TruthValue currentTruth = truthTable[randomIndex].Item2;
-                                currentTruth._value = !truthTable[randomIndex].Item2._value;
-                                int negativeID = -currentTruth._ID;
-
-                                if(truthDictionary.ContainsKey(negativeID))
-                                {
-                                    truthDictionary[negativeID]._value = !currentTruth._value;
-                                }
+                            {
+                                FlipTruthValue(truthTable[randomIndex].Item2);                                
                             }
                         }
                     }
@@ -225,6 +200,18 @@ namespace Week_16_Programming_Assignment
                 }
 
                 return true;
+            }
+
+            // Core Action: Flip Truth Value and it's negative counterpart
+            void FlipTruthValue(TruthValue currentTruth)
+            {
+                currentTruth._value = !currentTruth._value;
+                int negativeID = -currentTruth._ID;
+
+                if(truthDictionary.ContainsKey(negativeID))
+                {
+                    truthDictionary[negativeID]._value = !currentTruth._value;
+                }
             }
         }
     }
