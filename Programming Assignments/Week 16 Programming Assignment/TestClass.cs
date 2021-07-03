@@ -61,7 +61,7 @@ public class TestClass
 
 
         // Act
-        sat_2Solver.PapaDimitrious(truthTable);
+        sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
 
         // Assert
         Assert.Equal(2, sat_2Solver._positiveID_Dict[2]._ID);     
@@ -86,7 +86,7 @@ public class TestClass
 
 
         // Act
-        sat_2Solver.PapaDimitrious(truthTable);
+        sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
         int fix = sat_2Solver._negativeID_Dict.Count;
 
         // Assert

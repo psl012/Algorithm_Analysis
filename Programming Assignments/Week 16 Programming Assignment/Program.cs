@@ -14,9 +14,13 @@ namespace Week_16_Programming_Assignment
             
 
             // truthTable  = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Real_Case_01.txt");
-            (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_01.txt");
 
-            sat.PapaDimitrious(truthTable);
+            // true 
+            (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_02_True.txt");
+           // (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
+
+
+            bool finalAnswer = sat.PapaDimitrious(truthTable, fileReader.truthDictionary);
 
             foreach((TruthValue, TruthValue) tv in truthTable)
             {
@@ -24,6 +28,7 @@ namespace Week_16_Programming_Assignment
             }
 
             Console.WriteLine("END-OF-SEE-END-OF-SEE-------------------");
+            Console.WriteLine(finalAnswer);
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
@@ -31,11 +36,12 @@ namespace Week_16_Programming_Assignment
 
     class FileReader
     {
+        public  Dictionary<int, TruthValue> truthDictionary {get; private set;} = new Dictionary<int, TruthValue>();
+
         public (TruthValue, TruthValue)[] Scan(string dir)
         {
             string[] lines = File.ReadAllLines(dir);
             (TruthValue, TruthValue)[]  truthTable = new (TruthValue, TruthValue)[lines.Length - 1];
-            Dictionary<int, TruthValue> truthDictionary = new Dictionary<int, TruthValue>();
 
             for(int i = 1; i < lines.Length; i++)
             {
@@ -72,7 +78,7 @@ namespace Week_16_Programming_Assignment
         public Dictionary<int, TruthValue> _positiveID_Dict {get; private set;}
         public Dictionary<int, TruthValue> _negativeID_Dict  {get; private set;}
 
-        public void PapaDimitrious((TruthValue, TruthValue)[] truthTable)
+        public bool PapaDimitrious((TruthValue, TruthValue)[] truthTable, Dictionary<int, TruthValue> truthDictionary)
         {
         // Initialization-----------------------------------------------------------------------------
             // Make a Dictionary of only positive literals 
@@ -82,7 +88,12 @@ namespace Week_16_Programming_Assignment
             _negativeID_Dict = new Dictionary<int, TruthValue>();
 
             // Random number makeer of TruthValue Initializer
-            Random randomNumber = new Random();
+            Random randomNumber = new Random(2);
+
+            int tableLength = truthTable.Length;
+            int n = 2*truthTable.Length;
+            int outerLoopLimit = (int) Math.Log2(n);
+            int innerLoopLimit = (int) 2*n*n;
 
             foreach((TruthValue, TruthValue) truthValue in truthTable)
             {
@@ -91,7 +102,58 @@ namespace Week_16_Programming_Assignment
             }
             Initialize_TruthValues();
         // End of Initialization-----------------------------------------------------------------
+        
+        // Main Process------------------------------------------------
+            for(int i = 0; i < outerLoopLimit; i++)
+            {
+                for(int j = 0; j < innerLoopLimit; j++)
+                {
+                    if(ReplaceMeTruthTableChecker(truthTable))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        int randomIndex = randomNumber.Next(0, tableLength);
 
+                        if(truthTable[randomIndex].Item1._value || truthTable[randomIndex].Item2._value)
+                        {
+                            bool doNothing = true;
+                        }
+                        else
+                        {
+                            int randomItem = randomNumber.Next(0, 2);
+
+                            if(randomItem == 0)
+                            {
+                                TruthValue currentTruth = truthTable[randomIndex].Item1;
+                                currentTruth._value = !truthTable[randomIndex].Item1._value;
+                                int negativeID = -currentTruth._ID;
+
+                                if(truthDictionary.ContainsKey(negativeID))
+                                {
+                                    truthDictionary[negativeID]._value = !currentTruth._value;
+                                }
+                            }
+                            else
+                            {                                
+                                TruthValue currentTruth = truthTable[randomIndex].Item2;
+                                currentTruth._value = !truthTable[randomIndex].Item2._value;
+                                int negativeID = -currentTruth._ID;
+
+                                if(truthDictionary.ContainsKey(negativeID))
+                                {
+                                    truthDictionary[negativeID]._value = !currentTruth._value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        // End of Main Process----------------------------------------------------------
+
+        // Check 
+            return ReplaceMeTruthTableChecker(truthTable);
 
             // internal functions---------------------------------------------------------------------------------------
             // Initializaztion
@@ -116,6 +178,20 @@ namespace Week_16_Programming_Assignment
                         _negativeID_Dict[-truthValueID]._value = !myRandomTruth;
                     }
                 }
+
+                // Iterate through all the negative literals
+                foreach(KeyValuePair<int, TruthValue> tValue in _negativeID_Dict)
+                {
+                    // Reference for negative check
+                    int truthValueID = tValue.Key;
+
+                    if(!_positiveID_Dict.ContainsKey(-truthValueID))
+                    {
+                        // Truth Value of RandomTruth
+                        bool myRandomTruth = GiveRandomTruth();
+                        tValue.Value._value = myRandomTruth;
+                    }
+                }   
             }
 
             // Check negaFunction
@@ -132,6 +208,23 @@ namespace Week_16_Programming_Assignment
                // Console.WriteLine("Truth Value Number: " + rNumber);
                 if(rNumber == 0) {return false;}
                 else{return true;}
+            }
+
+            // Temporary Check Function
+            bool ReplaceMeTruthTableChecker((TruthValue, TruthValue)[] truthTable)
+            {
+                bool tableValue = true;
+                foreach((TruthValue, TruthValue) entry in truthTable)
+                {
+                    tableValue = tableValue && (entry.Item1._value || entry.Item2._value);
+
+                    if(tableValue == false)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
             }
         }
     }
