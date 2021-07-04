@@ -13,19 +13,23 @@ namespace Week_16_Programming_Assignment
             FileReader fileReader = new FileReader();
             SAT_2Solver sat = new SAT_2Solver();
             
-            (TruthValue, TruthValue)[] truthTable = fileReader.Scan("Test Cases/Real_Case_01.txt");
-
-//            bool finalAnswer = sat.PapaDimitrious(truthTable, fileReader.truthDictionary);
+            (TruthValue, TruthValue)[] truthTable = fileReader.Scan("Test Cases/input_beaunus_39_100000_True.txt");
             (TruthValue, TruthValue)[] coreTruthTable = sat.GetCoreTruthTable(truthTable);
-            foreach((TruthValue, TruthValue) tv in truthTable)
-            {
-            //    Console.WriteLine(tv.Item1._ID + ":" +  tv.Item1._value + ", " + tv.Item2._ID + ":" + tv.Item2._value);
-            }
 
+            bool finalAnswer = sat.PapaDimitrious(coreTruthTable);
+            
             Console.WriteLine("END-OF-SEE-END-OF-SEE-------------------");
-           // Console.WriteLine(finalAnswer);
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(finalAnswer);
             Console.ReadKey();
+
+            // Internal Functions
+            void ShowTruthValues()
+            {
+                foreach((TruthValue, TruthValue) tv in truthTable)
+                {
+                    Console.WriteLine(tv.Item1._ID + ":" +  tv.Item1._value + ", " + tv.Item2._ID + ":" + tv.Item2._value);
+                }
+            }
         }
     }
 
