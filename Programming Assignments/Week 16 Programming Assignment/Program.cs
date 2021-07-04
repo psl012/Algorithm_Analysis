@@ -16,7 +16,7 @@ namespace Week_16_Programming_Assignment
             (TruthValue, TruthValue)[] truthTable = fileReader.Scan("Test Cases/Real_Case_01.txt");
 
 //            bool finalAnswer = sat.PapaDimitrious(truthTable, fileReader.truthDictionary);
-            sat.GetCoreTruthTable(truthTable);
+            (TruthValue, TruthValue)[] coreTruthTable = sat.GetCoreTruthTable(truthTable);
             foreach((TruthValue, TruthValue) tv in truthTable)
             {
             //    Console.WriteLine(tv.Item1._ID + ":" +  tv.Item1._value + ", " + tv.Item2._ID + ":" + tv.Item2._value);
@@ -31,11 +31,11 @@ namespace Week_16_Programming_Assignment
 
     class FileReader
     {
-        public  Dictionary<int, TruthValue> truthDictionary {get; private set;} = new Dictionary<int, TruthValue>();
-
         public (TruthValue, TruthValue)[] Scan(string dir)
         {
             string[] lines = File.ReadAllLines(dir);
+
+            Dictionary<int, TruthValue> truthDictionary = new Dictionary<int, TruthValue>();
             (TruthValue, TruthValue)[]  truthTable = new (TruthValue, TruthValue)[lines.Length - 1];
 
             for(int i = 1; i < lines.Length; i++)
@@ -75,7 +75,7 @@ namespace Week_16_Programming_Assignment
 
         Dictionary<int, TruthValue> _truthDictList = new Dictionary<int, TruthValue>();
 
-        public void GetCoreTruthTable((TruthValue, TruthValue)[] truthTable)
+        public (TruthValue, TruthValue)[] GetCoreTruthTable((TruthValue, TruthValue)[] truthTable)
         {
             Dictionary<int, (TruthValue, TruthValue)> coreTruthDictionary = new Dictionary<int, (TruthValue, TruthValue)>();
             for(int i = 0; i < truthTable.Length; i++)
@@ -136,7 +136,7 @@ namespace Week_16_Programming_Assignment
                 ii++;
             }
 
-            Console.WriteLine(PapaDimitrious(coreTruthArray));
+            return coreTruthArray;
 
        //     ShowCoreTable();
         // Internal Functions--------------------------------------------------------------------
