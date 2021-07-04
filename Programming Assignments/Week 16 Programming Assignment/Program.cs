@@ -77,8 +77,6 @@ namespace Week_16_Programming_Assignment
         public Dictionary<int, TruthValue> _positiveID_Dict {get; private set;}
         public Dictionary<int, TruthValue> _negativeID_Dict  {get; private set;}
 
-        Dictionary<int, TruthValue> _truthDictList = new Dictionary<int, TruthValue>();
-
         public (TruthValue, TruthValue)[] GetCoreTruthTable((TruthValue, TruthValue)[] truthTable)
         {
             Dictionary<int, (TruthValue, TruthValue)> coreTruthDictionary = new Dictionary<int, (TruthValue, TruthValue)>();
@@ -114,20 +112,6 @@ namespace Week_16_Programming_Assignment
                 {
                     Console.WriteLine("managed to get the core");
                     break;
-                }
-            }
-
-            foreach(KeyValuePair<int, (TruthValue, TruthValue)> entry in coreTruthDictionary)
-            {
-                (TruthValue, TruthValue) literal = entry.Value;
-                if(!_truthDictList.ContainsKey(literal.Item1._ID))
-                {
-                    _truthDictList.Add(literal.Item1._ID, literal.Item1);
-                }
-
-                if(!_truthDictList.ContainsKey(literal.Item2._ID))
-                {
-                    _truthDictList.Add(literal.Item2._ID, literal.Item2);
                 }
             }
 
@@ -199,7 +183,11 @@ namespace Week_16_Programming_Assignment
 
         public bool PapaDimitrious((TruthValue, TruthValue)[] truthTable)
         {
+
         // Initialization-----------------------------------------------------------------------------
+            // Make a dictionary List containg all the verbs (unique values)        
+            Dictionary<int, TruthValue> _truthDictList = new Dictionary<int, TruthValue>();
+
             // Make a Dictionary of only positive literals 
             _positiveID_Dict = new Dictionary<int, TruthValue>();
 
@@ -208,6 +196,13 @@ namespace Week_16_Programming_Assignment
 
             // Random number makeer of TruthValue Initializer
             Random randomNumber = new Random(2);
+
+            foreach((TruthValue, TruthValue) entry in truthTable)
+            {
+                (TruthValue, TruthValue) literal = entry;
+                AddToTheDictList(literal.Item1);
+                AddToTheDictList(literal.Item2);
+            }
 
             int tableLength = truthTable.Length;
             int n = _truthDictList.Count;
@@ -293,6 +288,15 @@ namespace Week_16_Programming_Assignment
                     }
                 }   
             }
+
+            void AddToTheDictList(TruthValue truthValue)
+            {
+                if(!_truthDictList.ContainsKey(truthValue._ID))
+                {
+                    _truthDictList.Add(truthValue._ID, truthValue);
+                }
+            }
+
 
             // Check negaFunction
             void CheckNumberSignAndStore(TruthValue truthValue)

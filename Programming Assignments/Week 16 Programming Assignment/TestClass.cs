@@ -95,7 +95,7 @@ public class TestClass
     }
 
     [Fact]
-    public void PapaDimitrious_Test_Case_01_True()
+    public void PapaDimitrious_Test_Case_02_True()
     {
         // Arrange
         FileReader fileReader = new FileReader();
@@ -104,26 +104,97 @@ public class TestClass
         (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_02_True.txt");
         
         // Act
-        bool myAnswer = sat_2Solver.PapaDimitrious(truthTable);
+        (TruthValue, TruthValue)[] coreTruthTable = sat_2Solver.GetCoreTruthTable(truthTable);
+        bool myAnswer = sat_2Solver.PapaDimitrious(coreTruthTable);
 
         // Assert
         Assert.True(myAnswer);
     }
     
 
-        [Fact]
-        public void PapaDimitrious_Test_Case_02_False()
-        {
-            // Arrange
-            FileReader fileReader = new FileReader();
-            SAT_2Solver sat_2Solver = new SAT_2Solver();    
-            //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
-            (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
-            
-            // Act
-            bool myAnswer = sat_2Solver.PapaDimitrious(truthTable);
+    [Fact]
+    public void PapaDimitrious_Test_Case_03_False()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        SAT_2Solver sat_2Solver = new SAT_2Solver();    
+        //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
+        (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
+        
+        // Act
+        (TruthValue, TruthValue)[] coreTruthTable = sat_2Solver.GetCoreTruthTable(truthTable);
+        bool myAnswer = sat_2Solver.PapaDimitrious(coreTruthTable);
 
-            // Assert
-            Assert.False(myAnswer);
-        }
+        // Assert
+        Assert.False(myAnswer);
+    }
+
+    [Fact]
+    public void PapaDimitrious_Test_Case_04_True()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        SAT_2Solver sat_2Solver = new SAT_2Solver();    
+        //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_04_1000_True.txt");
+        (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_04_1000_True.txt");
+        
+        // Act
+         (TruthValue, TruthValue)[] coreTruthTable = sat_2Solver.GetCoreTruthTable(truthTable);
+        bool myAnswer = sat_2Solver.PapaDimitrious(coreTruthTable);
+
+        // Assert
+        Assert.True(myAnswer);
+    }
+
+    [Fact]
+    public void PapaDimitrious_Test_Case_10000_False()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        SAT_2Solver sat_2Solver = new SAT_2Solver();    
+        //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\input_beaunus_32_10000_False.txt");
+        (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\input_beaunus_32_10000_False.txt");
+        
+        // Act
+        (TruthValue, TruthValue)[] coreTruthTable = sat_2Solver.GetCoreTruthTable(truthTable);
+        bool myAnswer = sat_2Solver.PapaDimitrious(coreTruthTable);
+
+        // Assert
+        Assert.False(myAnswer);
+    }
+
+    [Fact]
+    public void PapaDimitrious_Test_Case_100000_True()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        SAT_2Solver sat_2Solver = new SAT_2Solver();    
+        //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\input_beaunus_39_100000_True.txt");
+        (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\input_beaunus_39_100000_True.txt");
+        
+        // Act
+        (TruthValue, TruthValue)[] coreTruthTable = sat_2Solver.GetCoreTruthTable(truthTable);
+        bool myAnswer = sat_2Solver.PapaDimitrious(coreTruthTable);
+
+        // Assert
+        Assert.True(myAnswer);
+    }
+
+    [Fact]
+    public void PapaDimitrious_Test_Case_100000_False()
+    {
+        // Arrange
+        FileReader fileReader = new FileReader();
+        SAT_2Solver sat_2Solver = new SAT_2Solver();    
+        //  (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\Paul\Documents\Open Source Society for Computer Science (OSSU)\Algorithms Coursera\Programming Assignments\Week 16 Programming Assignment\Test Cases\input_beaunus_40_100000_False.txt");
+        (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\input_beaunus_40_100000_False.txt");
+        
+        // Act
+        (TruthValue, TruthValue)[] coreTruthTable = sat_2Solver.GetCoreTruthTable(truthTable);
+        bool myAnswer = sat_2Solver.PapaDimitrious(coreTruthTable);
+
+        // Assert
+        Assert.False(myAnswer);
+    }
+ 
 }
