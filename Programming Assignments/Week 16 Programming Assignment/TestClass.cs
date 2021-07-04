@@ -61,7 +61,7 @@ public class TestClass
 
 
         // Act
-        sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
+        sat_2Solver.PapaDimitrious(truthTable);
 
         // Assert
         Assert.Equal(2, sat_2Solver._positiveID_Dict[2]._ID);     
@@ -86,7 +86,7 @@ public class TestClass
 
 
         // Act
-        sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
+        sat_2Solver.PapaDimitrious(truthTable);
         int fix = sat_2Solver._negativeID_Dict.Count;
 
         // Assert
@@ -104,7 +104,7 @@ public class TestClass
         (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_02_True.txt");
         
         // Act
-        bool myAnswer = sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
+        bool myAnswer = sat_2Solver.PapaDimitrious(truthTable);
 
         // Assert
         Assert.True(myAnswer);
@@ -121,7 +121,7 @@ public class TestClass
             (TruthValue, TruthValue)[] truthTable = fileReader.Scan(@"C:\Users\lacap\Desktop\Paul\Cloud Folders Git\Algorithm Analysis\Programming Assignments\Week 16 Programming Assignment\Test Cases\Test_Case_03_False.txt");
             
             // Act
-            bool myAnswer = sat_2Solver.PapaDimitrious(truthTable, fileReader.truthDictionary);
+            bool myAnswer = sat_2Solver.PapaDimitrious(truthTable);
 
             // Assert
             Assert.False(myAnswer);

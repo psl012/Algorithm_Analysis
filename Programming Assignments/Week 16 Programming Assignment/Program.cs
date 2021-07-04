@@ -13,17 +13,17 @@ namespace Week_16_Programming_Assignment
             FileReader fileReader = new FileReader();
             SAT_2Solver sat = new SAT_2Solver();
             
-            (TruthValue, TruthValue)[] truthTable = fileReader.Scan("Test Cases/Test_Case_02_True.txt");
+            (TruthValue, TruthValue)[] truthTable = fileReader.Scan("Test Cases/Real_Case_01.txt");
 
-            bool finalAnswer = sat.PapaDimitrious(truthTable, fileReader.truthDictionary);
-
+//            bool finalAnswer = sat.PapaDimitrious(truthTable, fileReader.truthDictionary);
+            sat.GetCoreTruthTable(truthTable);
             foreach((TruthValue, TruthValue) tv in truthTable)
             {
-                Console.WriteLine(tv.Item1._ID + ":" +  tv.Item1._value + ", " + tv.Item2._ID + ":" + tv.Item2._value);
+            //    Console.WriteLine(tv.Item1._ID + ":" +  tv.Item1._value + ", " + tv.Item2._ID + ":" + tv.Item2._value);
             }
 
             Console.WriteLine("END-OF-SEE-END-OF-SEE-------------------");
-            Console.WriteLine(finalAnswer);
+           // Console.WriteLine(finalAnswer);
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
@@ -73,7 +73,127 @@ namespace Week_16_Programming_Assignment
         public Dictionary<int, TruthValue> _positiveID_Dict {get; private set;}
         public Dictionary<int, TruthValue> _negativeID_Dict  {get; private set;}
 
-        public bool PapaDimitrious((TruthValue, TruthValue)[] truthTable, Dictionary<int, TruthValue> truthDictionary)
+        Dictionary<int, TruthValue> _truthDictList = new Dictionary<int, TruthValue>();
+
+        public void GetCoreTruthTable((TruthValue, TruthValue)[] truthTable)
+        {
+            Dictionary<int, (TruthValue, TruthValue)> coreTruthDictionary = new Dictionary<int, (TruthValue, TruthValue)>();
+            for(int i = 0; i < truthTable.Length; i++)
+            {
+                coreTruthDictionary.Add(i, truthTable[i]);
+            }
+
+            // Make a Dictionary of only positive literals 
+            _positiveID_Dict = new Dictionary<int, TruthValue>();
+
+            // Make a Dictionary of only negative literals
+            _negativeID_Dict = new Dictionary<int, TruthValue>();
+
+            // Make a pure dictionary (a verb that is only either positive all through out the truthTable or negative all throughout the truthtable)
+            Dictionary<int, TruthValue> pureID_Dict = new Dictionary<int, TruthValue>();
+
+
+            for(int i = 0; i < 1000; i++)
+            {
+                UpdatePostive_Negative_Dicts();
+                MakePureTruthDictionary();
+                foreach(KeyValuePair<int, (TruthValue, TruthValue)> tEntry in coreTruthDictionary)
+                {
+                    (TruthValue, TruthValue) literal = tEntry.Value;
+                    if(pureID_Dict.ContainsKey(literal.Item1._ID) || pureID_Dict.ContainsKey(literal.Item2._ID))
+                    {
+                        coreTruthDictionary.Remove(tEntry.Key);
+                    }
+                }
+
+                if(pureID_Dict.Count == 0)
+                {
+                    Console.WriteLine("managed to get the core");
+                    break;
+                }
+            }
+
+            foreach(KeyValuePair<int, (TruthValue, TruthValue)> entry in coreTruthDictionary)
+            {
+                (TruthValue, TruthValue) literal = entry.Value;
+                if(!_truthDictList.ContainsKey(literal.Item1._ID))
+                {
+                    _truthDictList.Add(literal.Item1._ID, literal.Item1);
+                }
+
+                if(!_truthDictList.ContainsKey(literal.Item2._ID))
+                {
+                    _truthDictList.Add(literal.Item2._ID, literal.Item2);
+                }
+            }
+
+            (TruthValue, TruthValue)[] coreTruthArray = new (TruthValue, TruthValue)[coreTruthDictionary.Count];
+
+            int ii = 0;
+            foreach(KeyValuePair<int, (TruthValue, TruthValue)> entry in coreTruthDictionary)
+            {
+                coreTruthArray[ii] = entry.Value;
+                ii++;
+            }
+
+            Console.WriteLine(PapaDimitrious(coreTruthArray));
+
+       //     ShowCoreTable();
+        // Internal Functions--------------------------------------------------------------------
+
+            void UpdatePostive_Negative_Dicts()
+            {
+                _positiveID_Dict.Clear();
+                _negativeID_Dict.Clear();
+
+                foreach(KeyValuePair<int, (TruthValue, TruthValue)> truthValue in coreTruthDictionary)
+                {
+                    CheckNumberSignAndStore(truthValue.Value.Item1);
+                    CheckNumberSignAndStore(truthValue.Value.Item2);
+                }
+            }
+
+            void CheckNumberSignAndStore(TruthValue truthValue)
+            {
+                int num = truthValue._ID;
+                if(num < 0 && !_negativeID_Dict.ContainsKey(num)) _negativeID_Dict.Add(num, truthValue);  
+                else if(num >= 0 && !_positiveID_Dict.ContainsKey(num)) _positiveID_Dict.Add(num, truthValue);  
+            }
+
+
+            void MakePureTruthDictionary()
+            {
+                pureID_Dict.Clear();
+                // Finds pure positive verbs
+                foreach(KeyValuePair<int, TruthValue> entry in _positiveID_Dict)
+                {
+                    if(!_negativeID_Dict.ContainsKey(-entry.Key))
+                    {
+                        pureID_Dict.Add(entry.Value._ID, entry.Value);
+                    }
+                }
+
+                // Finds pure negative verbs
+                foreach(KeyValuePair<int, TruthValue> entry in _negativeID_Dict)
+                {
+                    if(!_positiveID_Dict.ContainsKey(-entry.Key))
+                    {
+                        pureID_Dict.Add(entry.Value._ID, entry.Value);
+                    }
+                }
+            }
+
+            void ShowCoreTable()
+            {
+                foreach(KeyValuePair<int, (TruthValue, TruthValue)> entry in coreTruthDictionary)
+                {
+                    Console.WriteLine(entry.Value.Item1._ID + "," + entry.Value.Item2._ID);
+                }
+            }
+
+        }
+
+        public bool PapaDimitrious((TruthValue, TruthValue)[] truthTable)
         {
         // Initialization-----------------------------------------------------------------------------
             // Make a Dictionary of only positive literals 
@@ -86,7 +206,7 @@ namespace Week_16_Programming_Assignment
             Random randomNumber = new Random(2);
 
             int tableLength = truthTable.Length;
-            int n = truthDictionary.Count;
+            int n = _truthDictList.Count;
             int outerLoopLimit = (int) Math.Log2(n);
             int innerLoopLimit = (int) 2*n*n;
 
@@ -98,6 +218,7 @@ namespace Week_16_Programming_Assignment
             Initialize_TruthValues();
         // End of Initialization-----------------------------------------------------------------
         
+
         // Main Process------------------------------------------------
             for(int i = 0; i < outerLoopLimit; i++)
             {
@@ -208,9 +329,9 @@ namespace Week_16_Programming_Assignment
                 currentTruth._value = !currentTruth._value;
                 int negativeID = -currentTruth._ID;
 
-                if(truthDictionary.ContainsKey(negativeID))
+                if(_truthDictList.ContainsKey(negativeID))
                 {
-                    truthDictionary[negativeID]._value = !currentTruth._value;
+                    _truthDictList[negativeID]._value = !currentTruth._value;
                 }
             }
         }
